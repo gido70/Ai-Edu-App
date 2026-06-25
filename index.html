@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AI للمعلمين">
+<meta name="theme-color" content="#0a1e4a">
+<meta name="description" content="100 استخدام عملي للذكاء الاصطناعي في التعليم - أدوات مجانية وبرومبتات احترافية للمعلمين">
+<meta name="keywords" content="ذكاء اصطناعي, تعليم, معلمين, ChatGPT, برومبت, تخطيط دروس">
+<meta property="og:title" content="دليل الذكاء الاصطناعي للمعلمين - 100 استخدام عملي">
+<meta property="og:description" content="100 فكرة تطبيقية جاهزة مع برومبتات احترافية وأدوات مجانية">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-152x152.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192x192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+<title>دليلك الذكي لاستخدام الذكاء الاصطناعي في التعليم | 100 استخدام عملي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1e4a;
+    --blue: #1565c0;
+    --sky: #2196f3;
+    --light-blue: #64b5f6;
+    --cyan: #29b6f6;
+    --gold: #f5c518;
+    --amber: #ffa000;
+    --white: #ffffff;
+    --off-white: #f0f6ff;
+    --card-bg: #ffffff;
+    --border: #d0e4f7;
+    --text-main: #0a1e4a;
+    --text-muted: #5577aa;
+    --green: #2e7d32;
+    --green-light: #e8f5e9;
+    --red: #c62828;
+    --red-light: #ffebee;
+    --tip-bg: #fff8e1;
+    --tip-border: #f5c518;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--off-white);
+    color: var(--text-main);
+    direction: rtl;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #0d2b6b 40%, #1565c0 100%);
+    color: white;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    background: rgba(33,150,243,0.18);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(245,197,24,0.10);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 24px 48px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 900;
+    font-size: 1rem;
+    border-radius: 50px;
+    padding: 6px 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: 1.1rem;
+    opacity: 0.88;
+    max-width: 640px;
+    margin: 0 auto 28px;
+    line-height: 1.8;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .stat-box {
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.20);
+    border-radius: 16px;
+    padding: 14px 28px;
+    text-align: center;
+    backdrop-filter: blur(4px);
+  }
+  .stat-box strong { display: block; font-size: 2rem; font-weight: 900; color: var(--gold); }
+  .stat-box span { font-size: 0.85rem; opacity: 0.85; }
+
+  /* ===== TOOLBAR ===== */
+  .toolbar {
+    background: white;
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(10,30,74,0.08);
+  }
+  .toolbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .search-wrap {
+    flex: 1;
+    min-width: 220px;
+    position: relative;
+  }
+  .search-wrap input {
+    width: 100%;
+    padding: 10px 16px 10px 44px;
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    direction: rtl;
+  }
+  .search-wrap input:focus { border-color: var(--sky); }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1.1rem;
+  }
+  .filter-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 2px solid var(--border);
+    background: white;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--sky); color: var(--sky); }
+  .filter-btn.active { background: var(--sky); border-color: var(--sky); color: white; }
+  .count-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    font-weight: 700;
+  }
+
+  /* ===== GRID ===== */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--navy);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  /* ===== CARD ===== */
+  .card {
+    background: white;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    cursor: pointer;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(10,30,74,0.14);
+    border-color: var(--sky);
+  }
+  .card.hidden { display: none; }
+
+  .card-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1565c0 100%);
+    padding: 18px 20px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .card-num {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 900;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    padding: 4px 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1.6;
+  }
+  .card-title {
+    color: white;
+    font-weight: 900;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .card-body {
+    padding: 16px 18px 0;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    border-radius: 50px;
+    padding: 3px 12px;
+    margin-bottom: 6px;
+  }
+  .label-use   { background: #e3f2fd; color: var(--blue); }
+  .label-sites { background: #e8f5e9; color: #2e7d32; }
+  .label-good  { background: #e8f5e9; color: #2e7d32; }
+  .label-bad   { background: #ffebee; color: var(--red); }
+  .label-tip   { background: var(--tip-bg); color: #e65100; }
+
+  .card-text {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: #334;
+    margin-bottom: 12px;
+  }
+
+  /* Sites row */
+  .sites-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .site-tag {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 3px 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--blue);
+  }
+
+  /* Expandable prompts */
+  .prompt-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--sky);
+    transition: background 0.15s;
+    text-align: right;
+  }
+  .prompt-toggle:hover { background: var(--off-white); }
+  .prompt-toggle .arrow { transition: transform 0.2s; font-size: 0.75rem; }
+  .prompt-toggle.open .arrow { transform: rotate(180deg); }
+
+  .prompt-details {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .prompt-details.open { display: block; }
+
+  .prompt-box {
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    line-height: 1.9;
+  }
+  .prompt-good { background: var(--green-light); border-right: 3px solid #43a047; }
+  .prompt-bad  { background: var(--red-light);   border-right: 3px solid #e53935; }
+  .prompt-tip  { background: var(--tip-bg);       border-right: 3px solid var(--gold); }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+    background: var(--sky);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 4px 14px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover { background: var(--blue); }
+  .copy-btn.copied { background: var(--green); }
+
+  /* ===== EMPTY STATE ===== */
+  .empty-state {
+    text-align: center;
+    padding: 64px 20px;
+    display: none;
+  }
+  .empty-state.show { display: block; }
+  .empty-state h3 { font-size: 1.3rem; color: var(--text-muted); margin-bottom: 8px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 0.85rem;
+  }
+  footer strong { color: var(--gold); }
+
+  /* ===== INSTALL BANNER ===== */
+  .install-banner {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--navy);
+    color: white;
+    padding: 14px 16px 20px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+    z-index: 200;
+    border-top: 3px solid var(--gold);
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.35);
+  }
+  .install-banner.show { display: flex; }
+  .install-banner img { width: 50px; height: 50px; border-radius: 12px; flex-shrink: 0; }
+  .install-banner-text { flex: 1; min-width: 0; }
+  .install-banner-text strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
+  .install-banner-text span { font-size: 0.76rem; opacity: 0.8; }
+  .install-btn {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 50px;
+    padding: 9px 18px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .install-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.45);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 6px;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ===== BOTTOM NAV ===== */
+  .bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: white;
+    border-top: 2px solid var(--border);
+    padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+    z-index: 150;
+    grid-template-columns: repeat(5, 1fr);
+    box-shadow: 0 -2px 16px rgba(10,30,74,0.08);
+  }
+  .bn-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 2px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    transition: color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .bn-item .icon { font-size: 1.25rem; line-height: 1; }
+  .bn-item.active { color: var(--sky); }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 640px) {
+    .cards-grid { grid-template-columns: 1fr; gap: 12px; }
+    .hero h1 { font-size: 1.35rem; }
+    .hero-inner { padding: 36px 14px 30px; }
+    .hero-badge { font-size: 0.85rem; }
+    .hero-stats { gap: 8px; }
+    .hero p { font-size: 0.9rem; }
+    .stat-box { padding: 8px 14px; }
+    .stat-box strong { font-size: 1.3rem; }
+    .toolbar-inner { padding: 9px 12px; gap: 8px; }
+    .filter-group { display: none; }
+    .count-label { display: none; }
+    .main { padding: 16px 12px 84px; }
+    .section-title { font-size: 1.05rem; margin-bottom: 14px; }
+    .card-header { padding: 14px 14px 12px; gap: 10px; }
+    .card-num { font-size: 0.95rem; padding: 3px 10px; }
+    .card-title { font-size: 0.9rem; }
+    .card-body { padding: 12px 14px 0; }
+    .card-text { font-size: 0.85rem; }
+    .section-label { font-size: 0.76rem; padding: 3px 10px; }
+    .site-tag { font-size: 0.76rem; padding: 3px 10px; }
+    .prompt-toggle { padding: 10px 14px; font-size: 0.8rem; }
+    .prompt-details { padding: 0 14px 14px; }
+    .prompt-box { font-size: 0.8rem; padding: 8px 12px; }
+    .copy-btn { font-size: 0.72rem; }
+    .bottom-nav { display: grid; }
+    /* Prevent iOS zoom on input focus */
+    .search-wrap input { font-size: 16px; }
+    footer { padding-bottom: 80px; }
+  }
+
+  @supports (padding: env(safe-area-inset-top)) {
+    .hero-inner { padding-top: calc(36px + env(safe-area-inset-top)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🤖 Instgraphic for Development</div>
+    <h1>دليلك الذكي لاستخدام<br><span>الذكاء الاصطناعي</span> في التعليم</h1>
+    <p>100 استخدام عملي للمعلمين — أدوات مجانية · برومبتات احترافية · نتائج دقيقة</p>
+    <div class="hero-stats">
+      <div class="stat-box"><strong>100</strong><span>فكرة تطبيقية جاهزة</span></div>
+      <div class="stat-box"><strong>4+</strong><span>مواقع مجانية لكل استخدام</span></div>
+      <div class="stat-box"><strong>100%</strong><span>مجاني ومفتوح للجميع</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث عن استخدام، موقع، أو كلمة مفتاحية...">
+    </div>
+    <div class="filter-group" id="filterGroup">
+      <button class="filter-btn active" data-filter="all">الكل</button>
+      <button class="filter-btn" data-filter="تخطيط">التخطيط</button>
+      <button class="filter-btn" data-filter="تقييم">التقييم</button>
+      <button class="filter-btn" data-filter="محتوى">المحتوى</button>
+      <button class="filter-btn" data-filter="تفاعل">التفاعل</button>
+      <button class="filter-btn" data-filter="إدارة">الإدارة</button>
+    </div>
+    <span class="count-label" id="countLabel">100 استخدام</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="section-title">📚 استكشف الاستخدامات الـ 100</div>
+  <div class="cards-grid" id="cardsGrid"></div>
+  <div class="empty-state" id="emptyState">
+    <h3>🔍 لا توجد نتائج مطابقة</h3>
+    <p>جرّب كلمات بحث مختلفة</p>
+  </div>
+</main>
+
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="installBanner">
+  <img src="icons/icon-96x96.png" alt="App Icon">
+  <div class="install-banner-text">
+    <strong>ثبّت التطبيق على هاتفك</strong>
+    <span>يعمل بدون إنترنت · سريع · مجاني</span>
+  </div>
+  <button class="install-btn" id="installBtn">تثبيت ⬇️</button>
+  <button class="install-close" id="closeInstall">✕</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="bn-item active" data-filter="all" onclick="setFilter(this)">
+    <span class="icon">🏠</span><span>الكل</span>
+  </button>
+  <button class="bn-item" data-filter="تخطيط" onclick="setFilter(this)">
+    <span class="icon">📋</span><span>تخطيط</span>
+  </button>
+  <button class="bn-item" data-filter="تقييم" onclick="setFilter(this)">
+    <span class="icon">✅</span><span>تقييم</span>
+  </button>
+  <button class="bn-item" data-filter="محتوى" onclick="setFilter(this)">
+    <span class="icon">📚</span><span>محتوى</span>
+  </button>
+  <button class="bn-item" data-filter="تفاعل" onclick="setFilter(this)">
+    <span class="icon">🎯</span><span>تفاعل</span>
+  </button>
+</nav>
+
+<footer>
+  <p>بإشراف <strong>Instgraphic Academy for Development</strong> · أدوات ذكية · تعليم مفهوم · مستقبل أفضل</p>
+</footer>
+
+<script>
+const usages = [
+  {
+    id: 1, title: "تخطيط الدروس وصياغة الأهداف التعليمية",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لإعداد خطة درس متكاملة تشمل الأهداف، التمهيد، الشرح، الأنشطة، التقويم، والواجب بما يناسب المرحلة الدراسية والزمن المتاح.",
+    sites: ["ChatGPT", "Gemini", "Microsoft Copilot", "Claude"],
+    goodPrompt: "أنت خبير تربوي. صمّم لي خطة درس لمدة [40] دقيقة لمادة [المادة] لصف [الصف] حول [الموضوع]. حدّد نواتج التعلم، التمهيد، الشرح خطوة بخطوة، نشاطين تفاعليين، أسئلة تقويم بنائي، واجبًا منزليًا وتعديلًا مناسبًا للطلاب الأضعف والأقوى.",
+    badPrompt: "لا تفترض معلومات غير مذكورة، ولا تقترح أهدافًا عامة مبهمة أو أنشطة لا تناسب العمر أو وقت الحصة. إذا كان هناك عنصر ناقص فاذكره بوضوح، وتجنب الحشو والتكرار.",
+    tip: "راجع الخطة وعدّلها بما يناسب صفك الحقيقي."
+  },
+  {
+    id: 2, title: "إعداد أوراق العمل والاختبارات القصيرة",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أوراق عمل وأسئلة اختيار من متعدد، صح أو خطأ، أكمل، وأسئلة قصيرة مع نموذج إجابة ومفتاح تصحيح.",
+    sites: ["ChatGPT", "Gemini", "QuestionWell", "MagicSchool"],
+    goodPrompt: "أنشئ لي ورقة عمل لمادة [المادة] لصف [الصف] حول [الموضوع] تتضمن: 5 أسئلة اختيار من متعدد، 3 صح أو خطأ، وسؤالين قصيرين. اجعل الأسئلة متدرجة في الصعوبة ثم أضف نموذج الإجابة ومفتاح تصحيح مختصر.",
+    badPrompt: "لا تضع أسئلة غامضة أو تحتمل أكثر من إجابة صحيحة، ولا تستخدم مفردات أعلى من مستوى الطلاب. تأكد من وجود إجابة واحدة صحيحة لكل سؤال موضوعي، وراجع التوازن بين السهولة والتحدي.",
+    tip: "اختبر الأسئلة بنفسك قبل طباعتها أو إرسالها للطلاب."
+  },
+  {
+    id: 3, title: "تبسيط المحتوى وتفريد التعليم",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإعادة شرح المحتوى نفسه بمستويات مختلفة، وتقديم دعم للطلاب الأضعف وتحديات إضافية للطلاب المتقدمين.",
+    sites: ["Diffit", "Brisk Teaching", "ChatGPT", "Gemini"],
+    goodPrompt: "أعد شرح الدرس التالي لثلاثة مستويات: أساسي، متوسط، ومتقدم. الموضوع هو [الموضوع] لصف [الصف]. أضف مفردات أساسية، مثالًا مبسطًا للطلاب الأضعف، نشاطًا إثرائيًا للطلاب الأقوى.",
+    badPrompt: "لا تغيّر المعنى العلمي أو تحذف الفكرة الرئيسية، ولا تستخدم لغة معقدة أو طفولية مبالغ فيه. حافظ على الدقة، وميّز بوضوح بين كل مستوى.",
+    tip: "قارن بين المستويات الثلاثة للتأكد من وجود فرق حقيقي بينها."
+  },
+  {
+    id: 4, title: "تصميم أنشطة تفاعلية وألعاب تعليمية",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لاقتراح أنشطة فردية وزوجية وجماعية، وألعاب صفية أو رقمية تعزز المشاركة والمحادثة والفهم.",
+    sites: ["Curipod", "Quizizz", "Wordwall", "Canva"],
+    goodPrompt: "اقترح 6 أنشطة تفاعلية لدرس [الموضوع] لصف [الصف]، بحيث تشمل: نشاطًا افتتاحيًا، عمل ثنائي، لعبة صفية، نشاط حركة أو تفاعل، سؤال خروج، وخيارًا مناسبًا للتعليم أونلاين. اكتب الهدف والخطوات والزمن لكل نشاط.",
+    badPrompt: "لا تقترح أنشطة تحتاج أدوات غير متاحة أو زمنًا غير واقعي، ولا تجعل التعليمات مبهمة. اجعل الأنشطة آمنة ومناسبة للعمر وتجنب التكرار أو المنافسة المربكة.",
+    tip: "اختر نشاطين فقط في البداية ثم وسّع تدريجيًا حسب وقت الحصة."
+  },
+  {
+    id: 5, title: "إنشاء عروض تقديمية ووسائل بصرية",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لبناء عرض تقديمي منظم، واقتراح صور وأفكار شرائح ووسائل توضيحية تدعم الفهم.",
+    sites: ["Canva", "Gamma", "Microsoft Copilot", "Gemini"],
+    goodPrompt: "أنشئ مخطط عرض تقديمي من [10] شرائح لشرح [الموضوع] لصف [الصف]. لكل شريحة اذكر: العنوان، 3 نقاط أساسية فقط، فكرة بصرية مناسبة، وسؤالًا سريعًا للتفاعل مع الطلاب. اجعل اللغة بسيطة وغير مزدحمة.",
+    badPrompt: "لا تضع فقرات طويلة داخل الشرائح، ولا تكرر الفكرة نفسها في أكثر من شريحة، ولا تقترح صورًا غير مناسبة أو غير دقيقة. حافظ على الاختصار وراجع صحة المعلومات.",
+    tip: "العروض الجيدة تختصر الفكرة ولا تستبدل شرح المعلم."
+  },
+  {
+    id: 6, title: "بناء Rubrics وأدوات تقييم",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء معايير تقييم واضحة للمهام الشفوية والكتابية والمشروعات، مع مستويات أداء قابلة للقياس.",
+    sites: ["ChatGPT", "Gemini", "Microsoft Copilot", "MagicSchool"],
+    goodPrompt: "صمّم لي rubric من 4 مستويات لتقييم [المهمة] لطلاب صف [الصف]. حدّد 4 معايير واضحة مثل: الفهم، التنظيم، الدقة، واللغة أو العرض. اكتب وصفًا قصيرًا وقابل للقياس لكل مستوى، ثم أضف نسخة مختصرة يمكن مشاركتها مع الطلاب.",
+    badPrompt: "لا تستخدم أوصافًا فضفاضة مثل ممتاز جدًا بدون تفسير، ولا تضع معايير لا ترتبط بالمهمة. اجعل كل معيار قابلًا للملاحظة والقياس، وتجنب التداخل بين المستويات.",
+    tip: "شارك معايير التقييم مع الطلاب قبل أداء المهمة لا بعدها فقط."
+  },
+  {
+    id: 7, title: "تقديم تغذية راجعة على أعمال الطلاب",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لتحليل كتابة الطالب أو إجاباته، واستخراج نقاط القوة والأخطاء الشائعة، واقتراح تحسينات واضحة.",
+    sites: ["ChatGPT", "Claude", "Gemini", "Brisk Teaching"],
+    goodPrompt: "حلّل هذا العمل الطلابي لصف [الصف] في مهمة [المهمة]. حدّد 3 نقاط قوة و3 أخطاء تحتاج تحسينًا، ثم قدّم تغذية راجعة مشجّعة ومباشرة، مع مثال أو مثالين على كيفية التحسين، من دون تغيير أسلوب الطالب بالكامل.",
+    badPrompt: "لا تعد كتابة العمل بالكامل، ولا تعطِ أحكامًا قاسية أو عامة، ولا تصحّح بما يتجاوز مستوى الطالب. إذا كان هناك جزء غير واضح فاذكره، وقدّم ملاحظات عملية محددة وقصيرة.",
+    tip: "استخدم الذكاء الاصطناعي للمساعدة في الملاحظات، لا كبديل لحكمك التربوي."
+  },
+  {
+    id: 8, title: "التواصل مع أولياء الأمور وكتابة التقارير",
+    tags: ["إدارة"],
+    use: "استخدم الذكاء الاصطناعي لصياغة رسائل مهنية ودافئة لأولياء الأمور، وتقارير مختصرة عن التقدم والسلوك والواجبات.",
+    sites: ["ChatGPT", "Microsoft Copilot", "Gemini", "Claude"],
+    goodPrompt: "اكتب رسالة مهنية ولطيفة لولي أمر طالب في صف [الصف] حول [التقدم أو الملاحظة]. اجعل الرسالة مختصرة، واضحة، ومحترمة، وتتضمن: ملاحظة إيجابية، النقطة التي تحتاج متابعة، واقتراحين عمليين للتعاون بين البيت والمدرسة.",
+    badPrompt: "لا تستخدم لغة لوم أو تهويل، ولا تكشف معلومات حساسة لا حاجة لها، ولا تجعل الرسالة طويلة أو غامضة. حافظ على نبرة داعمة ومهنية، واكتب خطوات واضحة قابلة للتنفيذ.",
+    tip: "راجع أسماء الطلاب والبيانات الحساسة بدقة قبل الإرسال."
+  },
+  {
+    id: 9, title: "إعداد خطط علاجية ودعم الطلاب المتعثرين",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتحليل جوانب الضعف لدى الطلاب واقتراح خطة علاجية قصيرة المدى تتضمن أهدافًا صغيرة وأنشطة متابعة عملية.",
+    sites: ["ChatGPT", "Gemini", "Diffit", "MagicSchool"],
+    goodPrompt: "حلّل نتائج طلاب صف [الصف] في [المهارة أو الوحدة] واقترح خطة علاجية لمدة [أسبوعين]. حدّد الأهداف الصغيرة، والأنشطة المناسبة، ووسيلة المتابعة، وتمييزًا بين من يحتاج دعمًا بسيطًا ومن يحتاج دعمًا مكثفًا.",
+    badPrompt: "لا تضع خطة عامة لا ترتبط ببيانات الطالب، ولا تقترح أنشطة فوق مستوى الطالب أو زمنًا غير واقعي. إذا كانت البيانات ناقصة فاذكر ذلك أولًا، واجعل الخطة قابلة للتنفيذ والمتابعة.",
+    tip: "استخدم الخطة العلاجية كنقطة بداية ثم حدّثها حسب استجابة الطلاب."
+  },
+  {
+    id: 10, title: "تصميم تمهيد الدرس وكسر الجليد",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لاقتراح أنشطة تمهيدية سريعة وأسئلة كسر جليد تربط المعرفة السابقة بموضوع الدرس وتزيد تفاعل الطلاب من البداية.",
+    sites: ["ChatGPT", "Gemini", "Curipod", "MagicSchool"],
+    goodPrompt: "اقترح 5 أنشطة تمهيدية لدرس [الموضوع] لصف [الصف] لا تتجاوز 5 دقائق. اجعلها متنوعة بين سؤال مثير، لعبة معرفة سريعة، وتفعيل معرفة سابقة. اكتب الهدف والخطوات والزمن.",
+    badPrompt: "لا تقترح تمهيدًا طويلًا يستهلك وقت الحصة، ولا أنشطة منفصلة عن هدف الدرس أو غير مناسبة لعمر الطلاب. إذا احتجت معلومات ناقصة فاذكرها أولًا.",
+    tip: "اختر تمهيدًا واحدًا فقط وجزّبه بمرونة."
+  },
+  {
+    id: 11, title: "إنشاء أسئلة نقاش ومحفزات حوار",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتوليد أسئلة مفتوحة وأسئلة متابعة تعزز التفكير، والمحادثة، وتبادل الآراء داخل الصف.",
+    sites: ["ChatGPT", "Gemini", "QuestionWell", "Brisk Teaching"],
+    goodPrompt: "أنشئ 10 أسئلة نقاش لدرس [الموضوع] لصف [الصف] تبدأ من السهل إلى العميق. أضف 3 أسئلة متابعة، وإجابات محتملة مختصرة، وطريقة لإشراك الطلاب الخجولين.",
+    badPrompt: "لا تكتب أسئلة إجابتها نعم أو لا فقط، ولا أسئلة فوق مستوى الطلاب أو مثيرة للجدل بلا هدف. اجعل الصياغة واضحة ومتصلة بالمحتوى.",
+    tip: "حضّر سؤالين بديلين إذا سكت الصف."
+  },
+  {
+    id: 12, title: "شرح المفاهيم الصعبة بأمثلة وتشبيهات",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإعادة شرح المفاهيم المجردة بأمثلة بسيطة وتشبيهات من حياة الطالب دون الإخلال بالدقة العلمية.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Microsoft Copilot"],
+    goodPrompt: "اشرح مفهوم [المفهوم] لطلاب [الصف] بثلاث طرق: تعريف بسيط، مثال من الحياة اليومية، وتشبيه سهل. ثم أضف خطأً شائعًا يقع فيه الطلاب وطريقة تصحيحه.",
+    badPrompt: "لا تستخدم تشبيهات تغيّر المعنى العلمي، ولا أمثلة بعيدة عن خبرة الطالب. إذا كان المفهوم حساسًا فاذكر حدود التشبيه.",
+    tip: "اعرض الشرحين ثم اختر الأقرب لبيئة طلابك."
+  },
+  {
+    id: 13, title: "إعداد ملخصات ومراجعات قبل الاختبار",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لاختصار الدروس في نقاط مراجعة واضحة وقوائم سريعة تساعد الطلاب قبل الاختبار.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Diffit"],
+    goodPrompt: "لخّص وحدة [الوحدة] لصف [الصف] في صفحة مراجعة واحدة تشمل: أهم 10 نقاط، 5 كلمات مفتاحية، 3 أخطاء شائعة، و5 أسئلة مراجعة مع الإجابات.",
+    badPrompt: "لا تحذف الأفكار الأساسية، ولا تجعل الملخص مجرد نسخة للنص الأصلي. تجنب الإطالة والغة الغامضة، وراعِ ترتيب الأفكار.",
+    tip: "استخدم الملخص للمراجعة لا كبديل عن شرح الوحدة."
+  },
+  {
+    id: 14, title: "تحويل الدروس إلى خرائط ذهنية ومنظمات بصرية",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لتنظيم المفاهيم والعلاقات بين الأفكار في خرائط ذهنية ومنظمات بصرية تسهّل الفهم والتذكر.",
+    sites: ["ChatGPT", "Gemini", "Canva", "MindMeister"],
+    goodPrompt: "حوّل درس [الموضوع] لصف [الصف] إلى خريطة ذهنية رئيسية تتضمن المفهوم الأساسي، 4 فروع رئيسية، وأمثلة مختصرة تحت كل فرع. اقترح أيضًا لونًا أو رمزًا لكل فرع.",
+    badPrompt: "لا تكدّس تفاصيل كثيرة داخل الخريطة، ولا تكرر الفروع أو تخلط بين العناوين الفرعية والرئيسية. حافظ على التسلسل البصري الواضح.",
+    tip: "كلما كانت الخريطة أبسط كانت أسهل للحفظ."
+  },
+  {
+    id: 15, title: "كتابة قصص تعليمية وتمثيليات قصيرة",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لكتابة قصة قصيرة أو حوار تمثيلي يشرح مفهومًا دراسيًا بطريقة ممتعة ومناسبة للعمر.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Canva"],
+    goodPrompt: "اكتب قصة تعليمية أو حوارًا من 8 أسطر حول [الموضوع] لطلاب [الصف]. اجعل اللغة سهلة، وأضف شخصيات بسيطة، ورسالة تعليمية واضحة، وسؤالين بعد القصة.",
+    badPrompt: "لا تجعل القصة طويلة أو معقدة، ولا تضف أحداثًا تشتت عن الهدف التعليمي. تجنب اللغة غير المناسبة للعمر.",
+    tip: "اقرأ القصة بصوت عالٍ قبل استخدامها."
+  },
+  {
+    id: 16, title: "إنشاء بنك أسئلة متدرج",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لبناء بنك أسئلة كبير ومتدرج يساعدك في الواجبات، والاختبارات، والمراجعة المتكررة.",
+    sites: ["ChatGPT", "Gemini", "QuestionWell", "MagicSchool"],
+    goodPrompt: "أنشئ بنك أسئلة حول [الموضوع] لصف [الصف] يضم 20 سؤالًا: 8 سهلة، 8 متوسطة، 4 متقدمة. نوّع بين اختيار من متعدد، أكمل، وصح أو خطأ، ثم أضف الإجابات.",
+    badPrompt: "لا تكرر الفكرة نفسها بصياغات كثيرة، ولا تضع أسئلة غير متوازنة أو أكثر من إجابة صحيحة. راجع مستوى الصعوبة بدقة.",
+    tip: "وسّع البنك تدريجيًا بدل بنائه دفعة واحدة."
+  },
+  {
+    id: 17, title: "تصميم مهام أداء ومشروعات",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لاقتراح مشروعات صفية ومهام أداء تربط التعلم بالتطبيق العملي وتُظهر فهم الطالب.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Microsoft Copilot"],
+    goodPrompt: "اقترح 4 مهام أداء أو مشروعات لدرس [الموضوع] لصف [الصف]. لكل مهمة اكتب: الوصف، الناتج المطلوب، الأدوات، الزمن، ومعيار نجاح مختصر.",
+    badPrompt: "لا تقترح مشروعًا يحتاج إمكانات غير متاحة أو زمنًا مبالغًا فيه، ولا تجعل المطلوب غامضًا. اربط كل مهمة بهدف تعلّمي واضح.",
+    tip: "اختر مشروعًا واحدًا قابلًا للتنفيذ أولًا."
+  },
+  {
+    id: 18, title: "تحليل نتائج الاختبارات واكتشاف الفجوات",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لقراءة نتائج الطلاب واكتشاف نقاط الضعف الجماعية والفردية واقتراح أولويات للتدخل.",
+    sites: ["ChatGPT", "Gemini", "Microsoft Copilot", "MagicSchool"],
+    goodPrompt: "حلّل نتائج اختبار صف [الصف] في [المادة/الوحدة]. حدّد أكثر 3 مهارات ضعيفة في الطلاب أو المجموعات الأكثر احتياجًا، واقترح خطوات علاجية للأسبوع القادم.",
+    badPrompt: "لا تستنتج أحكامًا من بيانات ناقصة، ولا تعرض معلومات حساسة بلا داعٍ. إذا كانت البيانات غير كافية فاذكر ذلك، وركّز على الأنماط لا على اللوم.",
+    tip: "ابدأ بمعالجة مهارة واحدة متكررة قبل معالجة كل شيء."
+  },
+  {
+    id: 19, title: "إعداد واجبات منزلية متدرجة",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لإعداد واجبات منزلية قصيرة ومتدرجة تراعي الفروق الفردية وتوازن بين التدريب وعدم إرهاق الطالب.",
+    sites: ["ChatGPT", "Gemini", "Brisk Teaching", "Diffit"],
+    goodPrompt: "صمّم واجبًا منزليًا حول [الموضوع] لصف [الصف] في 3 مستويات: أساسي، متوسط، وتحدي. اجعل الزمن الإجمالي مناسبًا، وأضف تعليمات واضحة ومفتاح تصحيح مختصر للمعلم.",
+    badPrompt: "لا تضع واجبًا طويلًا أو مكررًا، ولا أسئلة تحتاج شرحًا غير موجود. تجنب التكليفات التي تعتمد على موارد غير متاحة في المنزل.",
+    tip: "اجعل الواجب قليلًا لكن ذكيًا وواضحًا."
+  },
+  {
+    id: 20, title: "إنشاء خطط مراجعة أسبوعية",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لبناء خطة مراجعة أسبوعية توزّع المهارات والمفاهيم على أيام قصيرة ومنظمة، مع مراعاة الأولويات والزمن قبل الاختبار.",
+    sites: ["ChatGPT", "Gemini", "Microsoft Copilot", "MagicSchool"],
+    goodPrompt: "صمم لي خطة مراجعة لمدة [7] أيام لصف [الصف] في مادة [المادة] حول [الوحدة/المهارات]. وزّع المراجعة يوميًا في 15-20 دقيقة، وحدد هدفًا كل يوم، نشاطًا سريعًا، وسؤال مراجعة، وتنبيهًا لما يجب التركيز عليه.",
+    badPrompt: "لا تضع خطة عامة بلا تقسيم زمني، ولا تكرر نفس المهارة كل يوم، ولا تقترح مراجعة أطول من الوقت المتاح. إذا كانت البيانات ناقصة فاسأل أولًا.",
+    tip: "ابدأ بالمهارات الأهم ثم وزّع الباقي تدريجيًا."
+  },
+  {
+    id: 21, title: "توليد أفكار للأنشطة الإبداعية",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لاقتراح أفكار إبداعية للأنشطة الفنية والكتابية والتعبيرية التي تنمي مهارات التفكير الإبداعي لدى الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Canva"],
+    goodPrompt: "اقترح 8 أنشطة إبداعية متنوعة لطلاب [الصف] حول موضوع [الموضوع]. شمّل: رسم تعبيري، كتابة إبداعية، عمل يدوي، نشاط رقمي، وتمثيل. لكل نشاط اكتب الهدف والخطوات والمواد المطلوبة.",
+    badPrompt: "لا تقترح أنشطة تتطلب مواد مكلفة أو غير متوفرة، ولا تتجاهل الهدف التعليمي لصالح المتعة فقط. اجعل التعليمات واضحة وقابلة للتنفيذ في الفصل.",
+    tip: "دع الطلاب يختارون نشاطهم المفضل من القائمة."
+  },
+  {
+    id: 22, title: "إعداد أنشطة التعلم التعاوني",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم أنشطة تعاونية تنمي مهارات العمل الجماعي والتواصل وتوزيع الأدوار بين الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Curipod", "MagicSchool"],
+    goodPrompt: "صمّم نشاطًا تعاونيًا لمجموعات من [4] طلاب حول [الموضوع] لصف [الصف]. حدّد الأدوار لكل عضو، المهمة الجماعية، الناتج المطلوب، والزمن. أضف معيار تقييم مختصر للمجموعة.",
+    badPrompt: "لا تجعل المهمة فردية بالكامل أو تعتمد على شخص واحد، ولا تترك الأدوار غامضة. تأكد من أن كل عضو له مساهمة واضحة.",
+    tip: "راقب المجموعات خلال العمل وعدّل الأدوار عند الحاجة."
+  },
+  {
+    id: 23, title: "كتابة ملاحظات الحصة والتقارير الصفية",
+    tags: ["إدارة"],
+    use: "استخدم الذكاء الاصطناعي لصياغة ملاحظات الحصة والتقارير الصفية بشكل منظم يوضح ما تم إنجازه، مستوى التفاعل، والصعوبات الملحوظة.",
+    sites: ["ChatGPT", "Microsoft Copilot", "Claude", "Gemini"],
+    goodPrompt: "اكتب لي ملاحظة حصة مختصرة وتقريرًا عن درس [الموضوع] لصف [الصف] يتضمن ما تم إنجازه، مستوى التفاعل، أبرز الصعوبات، وخطوة تالية للحصة القادمة.",
+    badPrompt: "لا تكتب تقريرًا إنشائيًا طويلًا، ولا تضف معلومات لـم تحدث. ولا تستخدم أحكامًا شخصية غير مدعومة بملاحظات فعلية.",
+    tip: "دوّن الملاحظات فور انتهاء الحصة لتكون أدق."
+  },
+  {
+    id: 24, title: "بناء خطة توزيع المنهج الدراسي",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتوزيع محتوى المنهج على أسابيع الفصل الدراسي بما يتوافق مع المناسبات والاختبارات والإجازات.",
+    sites: ["ChatGPT", "Gemini", "Microsoft Copilot", "MagicSchool"],
+    goodPrompt: "وزّع منهج مادة [المادة] لصف [الصف] على [16] أسبوعًا مع مراعاة: أسابيع المراجعة، الاختبارات، والإجازات الرسمية. لكل أسبوع حدّد الوحدة، المهارة الرئيسية، وملاحظة إذا كان هناك ضغط وقت.",
+    badPrompt: "لا تضع توزيعًا مكثفًا غير واقعي أو يتجاهل أسابيع المراجعة. راعِ الزمن الفعلي المتاح، وإذا كانت البيانات ناقصة فاسأل أولًا.",
+    tip: "راجع التوزيع بعد أول شهر وعدّله حسب الواقع."
+  },
+  {
+    id: 25, title: "تصميم سيناريوهات تعليمية محاكاة",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء سيناريوهات محاكاة وواقع اصطناعي يُفعّل التفكير النقدي ويضع الطلاب في مواقف حقيقية.",
+    sites: ["ChatGPT", "Claude", "Gemini", "Curipod"],
+    goodPrompt: "صمّم سيناريو محاكاة حول [الموضوع] لطلاب [الصف]. اكتب الموقف، الأدوار المطلوبة، التحدي الذي يجب حله، وأسئلة تأملية للنقاش بعد المحاكاة.",
+    badPrompt: "لا تجعل السيناريو بعيدًا عن الواقع أو صعب الفهم، ولا تتجاهل الهدف التعليمي. وضّح ما يُتوقع من كل طالب.",
+    tip: "ابدأ بسيناريو بسيط قبل التعقيد."
+  },
+  {
+    id: 26, title: "إنشاء اختبارات تشخيصية قبلية",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لبناء اختبارات تشخيصية تكشف عن المعرفة السابقة للطلاب قبل بدء الوحدة لتحديد نقطة البداية المناسبة.",
+    sites: ["ChatGPT", "Gemini", "Google Forms", "MagicSchool"],
+    goodPrompt: "أنشئ اختبارًا تشخيصيًا قبليًا لوحدة [الوحدة] لصف [الصف] من 10 أسئلة متنوعة تكشف عن معرفة الطالب المسبقة. أضف تفسيرًا للنتائج يساعدني في تحديد المستوى.",
+    badPrompt: "لا تجعل الاختبار صعبًا جدًا أو طويلًا. يجب أن يكشف عن الفجوات لا يقيّم التحصيل النهائي.",
+    tip: "استخدم نتائج الاختبار التشخيصي لتعديل خطة الدرس."
+  },
+  {
+    id: 27, title: "تطوير مهارة القراءة والفهم القرائي",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإعداد نصوص قرائية متدرجة وأسئلة فهم تنمي مهارات الاستيعاب وتحليل النص لدى الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Diffit", "Brisk Teaching"],
+    goodPrompt: "اكتب نصًا قرائيًا مناسبًا لطلاب [الصف] حول [الموضوع] من [150] كلمة. أضف 5 أسئلة فهم متدرجة: استيعاب مباشر، استنتاج، وتقييم. ثم قدّم نسخة مبسطة للطلاب الأضعف.",
+    badPrompt: "لا تستخدم نصًا أعلى من مستوى الطلاب أو مليئًا بالمصطلحات الصعبة دون شرح. تأكد من أن الأسئلة تقيس مستويات مختلفة من الفهم.",
+    tip: "اقرأ النص مرة قبل الحصة للتأكد من مناسبته."
+  },
+  {
+    id: 28, title: "إعداد أسئلة Exit Ticket وتقييم ختامي",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أسئلة Exit Ticket وتقييم ختامي سريع يساعدك على قياس الفهم قبل نهاية الحصة.",
+    sites: ["ChatGPT", "QuestionWell", "Curipod", "MagicSchool"],
+    goodPrompt: "أنشئ 8 أسئلة Exit Ticket لدرس [الموضوع] لصف [الصف] تشمل: سؤال فهم، تطبيق، خطأ شائع، وتأمل سريع. ثم أضف نموذج إجابة مختصر.",
+    badPrompt: "لا تضع أسئلة تكرّر ما قيل حرفيًا فقط، ولا تجعلها طويلة، ولا تنس تنويع مستويات التفكير.",
+    tip: "سؤالان جيدان أفضل من عشرة سريعة."
+  },
+  {
+    id: 29, title: "إنشاء محتوى للتعلم المدمج والهجين",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتصميم أنشطة ومحتوى يناسب التعليم المدمج الذي يجمع بين الحضور الصفي والتعلم الرقمي الذاتي.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Microsoft Copilot"],
+    goodPrompt: "صمّم وحدة تعلم مدمج لدرس [الموضوع] لصف [الصف] تتضمن: نشاطًا صفيًا حضوريًا، مهمة رقمية ذاتية، ومورد فيديو أو قراءة. لكل جزء حدّد الهدف والزمن وطريقة التقييم.",
+    badPrompt: "لا تصمم محتوى يعتمد كليًا على التكنولوجيا أو يهمل الجانب الصفي. تأكد من توافر الأدوات الرقمية للطلاب.",
+    tip: "ابدأ بجزء واحد رقمي ثم وسّع تدريجيًا."
+  },
+  {
+    id: 30, title: "تصميم مسارات تعلم شخصية",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتصميم مسارات تعلم فردية تناسب اهتمامات الطلاب وأسلوب تعلمهم المفضل.",
+    sites: ["ChatGPT", "Gemini", "Claude", "MagicSchool"],
+    goodPrompt: "صمّم 3 مسارات تعلم مختلفة لوحدة [الوحدة] لصف [الصف]: مسار بصري، مسار سمعي/تفاعلي، ومسار قرائي/كتابي. لكل مسار حدّد الأنشطة والموارد المناسبة.",
+    badPrompt: "لا تجعل المسارات متطابقة في المحتوى أو الأسلوب. تأكد من أن كل مسار يصل إلى نفس الأهداف بطرق مختلفة.",
+    tip: "اسمح للطلاب باختيار مساراتهم بحرية."
+  },
+  {
+    id: 31, title: "إنشاء تمارين التفكير الناقد",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء تمارين ومواقف تحفز الطلاب على التحليل والتقييم والحكم بناءً على الأدلة.",
+    sites: ["ChatGPT", "Claude", "Gemini", "Brisk Teaching"],
+    goodPrompt: "اقترح 5 تمارين تفكير ناقد حول [الموضوع] لصف [الصف]. تشمل: تحليل حجة، تقييم مصدر، حل مشكلة، اتخاذ قرار، والتمييز بين حقيقة ورأي. لكل تمرين اكتب التعليمات وأسئلة التأمل.",
+    badPrompt: "لا تطرح أسئلة بإجابات محددة مسبقًا، ولا تجعل الموقف بعيدًا عن عالم الطلاب. تأكد من أن التمرين يتطلب تفكيرًا حقيقيًا لا حفظًا.",
+    tip: "ناقش الإجابات مع الطلاب ولا تفرض رأيًا واحدًا."
+  },
+  {
+    id: 32, title: "إعداد خطة الدعم لذوي الاحتياجات الخاصة",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتصميم تعديلات وتكيفات مناسبة للطلاب ذوي الاحتياجات الخاصة أو صعوبات التعلم.",
+    sites: ["ChatGPT", "Gemini", "Diffit", "MagicSchool"],
+    goodPrompt: "قدّم تعديلات تعليمية لدرس [الموضوع] لصف [الصف] تناسب طالبًا لديه [صعوبة التعلم أو الاحتياج]. شمّل: تعديلات في الشرح، التقييم، الواجب، والبيئة الصفية.",
+    badPrompt: "لا تقترح تعديلات تقلل من التوقعات التعليمية بشكل مبالغ فيه، ولا تتجاهل الاحتياج الفعلي. استشر متخصصًا للحالات الدقيقة.",
+    tip: "تواصل مع أولياء الأمور لمعرفة الاحتياجات الفعلية."
+  },
+  {
+    id: 33, title: "توليد أمثلة من الحياة الواقعية للمفاهيم",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإيجاد أمثلة من الحياة اليومية تساعد الطلاب على فهم المفاهيم المجردة وربطها بخبراتهم القريبة.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Microsoft Copilot"],
+    goodPrompt: "أعطني 6 أمثلة من الحياة الواقعية تشرح مفهوم [المفهوم] لطلاب صف [الصف]. ابدأ بأمثلة بسيطة ثم مثالين أعمق، مع شرح مختصر لكل مثال.",
+    badPrompt: "لا تستخدم أمثلة بعيدة عن خبرة الطلاب، ولا تشبيهات تخلّ بالمعنى العلمي أو تسبب فهمًا خاطئًا.",
+    tip: "اختر مثالًا واحدًا قويًا بدل قائمة طويلة بلا أثر."
+  },
+  {
+    id: 34, title: "تصميم بروتوكولات النقاش الصفي",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء بروتوكولات نقاش منظمة تضمن مشاركة جميع الطلاب وتطوير مهارات الاستماع والحوار.",
+    sites: ["ChatGPT", "Gemini", "Curipod", "Brisk Teaching"],
+    goodPrompt: "صمّم بروتوكول نقاش لصف [الصف] حول [الموضوع] يتضمن: قواعد الحوار، أدوار المشاركين، مراحل النقاش، وأسئلة تأمل ختامية. اجعله مناسبًا لـ [20] دقيقة.",
+    badPrompt: "لا تجعل البروتوكول معقدًا بخطوات كثيرة، ولا تتجاهل إدارة الوقت. تأكد من أن القواعد واضحة للطلاب.",
+    tip: "درّب الطلاب على البروتوكول قبل تطبيقه في موضوع مهم."
+  },
+  {
+    id: 35, title: "إنشاء اختبارات الذكاء الاصطناعي التفاعلية",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء اختبارات وألعاب تفاعلية رقمية تُستخدم في الحصة للمراجعة السريعة وقياس الفهم.",
+    sites: ["Quizizz", "Wordwall", "Blooket", "Kahoot"],
+    goodPrompt: "صمّم لعبة اختبار تفاعلية من 15 سؤالًا حول [الموضوع] لصف [الصف]. تضمن أنواعًا متعددة من الأسئلة ومستويات صعوبة متدرجة مع شرح الإجابات الصحيحة.",
+    badPrompt: "لا تجعل الأسئلة سهلة جدًا أو مملة، ولا تركز فقط على الحفظ. أضف تنوعًا في صيغ الأسئلة.",
+    tip: "استخدم اللعبة كمراجعة لا كتقييم رسمي."
+  },
+  {
+    id: 36, title: "كتابة أهداف تعليمية SMART",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لصياغة أهداف تعليمية محددة وقابلة للقياس ومرتبطة بالمستوى والمحتوى.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Microsoft Copilot"],
+    goodPrompt: "اكتب 5 أهداف تعليمية SMART لدرس [الموضوع] لصف [الصف]. لكل هدف: الفعل السلوكي، الشرط، ومعيار الأداء المقبول. استخدم تصنيف بلوم المعرفي.",
+    badPrompt: "لا تستخدم أفعالًا غامضة مثل 'يفهم' أو 'يعرف'. كل هدف يجب أن يكون قابلًا للملاحظة والقياس المباشر.",
+    tip: "صِغ الأهداف قبل إعداد الدرس لا بعده."
+  },
+  {
+    id: 37, title: "إنشاء محتوى تعليمي للعروض المرئية",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لكتابة النصوص والبيانات المناسبة للعروض المرئية والإنفوغرافيك التعليمي.",
+    sites: ["ChatGPT", "Canva", "Gemini", "Microsoft Copilot"],
+    goodPrompt: "أعدّ محتوى نصيًا لإنفوغرافيك تعليمي عن [الموضوع] لصف [الصف]. يتضمن: عنوان جذاب، 6 نقاط رئيسية مختصرة، وأرقام أو إحصائيات داعمة إن وُجدت.",
+    badPrompt: "لا تكتب نصًا طويلًا غير مناسب للعرض البصري. كل نقطة يجب أن تكون قصيرة وواضحة.",
+    tip: "المحتوى البصري الناجح يعتمد على القلة لا الكثرة."
+  },
+  {
+    id: 38, title: "إنشاء قوائم مفردات وتعريفات مبسطة",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإعداد قوائم مفردات أساسية وتعريفات مبسطة تساعد الطلاب على فهم المصطلحات الجديدة بسرعة.",
+    sites: ["ChatGPT", "Gemini", "Canva", "QuillBot"],
+    goodPrompt: "أنشئ قائمة بـ 12 مفردة أساسية من درس [الموضوع] لصف [الصف]. لكل كلمة: تعريف مبسط، مثال قصير، وكلمة مفتاحية تساعد على التذكر.",
+    badPrompt: "لا تستخدم تعريفات معجمية معقدة أو أمثلة بعيدة عن مستوى الطلاب، ولا تزد عدد الكلمات دون حاجة. ركّز على الكلمات الأكثر فائدة.",
+    tip: "الكلمات المختارة جيدًا أفضل من قائمة طويلة مشتتة."
+  },
+  {
+    id: 39, title: "تصميم أنشطة الاستقصاء والبحث",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أنشطة استقصائية تدفع الطلاب للبحث والاكتشاف وطرح الأسئلة بأنفسهم.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Google Scholar"],
+    goodPrompt: "صمّم نشاط استقصاء لطلاب [الصف] حول [الموضوع]. يتضمن: سؤالًا استقصائيًا رئيسيًا، خطوات البحث، مصادر مقترحة، وطريقة تقديم النتائج. الزمن: [أسبوع].",
+    badPrompt: "لا تجعل الاستقصاء مفتوحًا بالكامل دون توجيه، ولا تطلب بحثًا يتجاوز إمكانيات الطلاب. وفّر دعمًا واضحًا في كل خطوة.",
+    tip: "الاستقصاء الناجح يبدأ بسؤال يثير فضول الطالب."
+  },
+  {
+    id: 40, title: "إعداد نماذج التقييم الذاتي للطلاب",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء نماذج التقييم الذاتي التي تساعد الطلاب على مراقبة تقدمهم وتطوير الوعي الذاتي.",
+    sites: ["ChatGPT", "Gemini", "Google Forms", "Microsoft Forms"],
+    goodPrompt: "صمّم نموذج تقييم ذاتي لطلاب [الصف] بعد وحدة [الوحدة]. يتضمن: 8 أسئلة تأملية، مقياس من 1-5، وخانة لكتابة هدف شخصي للتحسين.",
+    badPrompt: "لا تجعل الأسئلة نعم/لا فقط، ولا تتجاهل الجانب الانفعالي للتعلم. شجّع الطلاب على الصدق لا على الإجابات المرغوبة.",
+    tip: "استخدم نتائج التقييم الذاتي في النقاشات الفردية مع الطلاب."
+  },
+  {
+    id: 41, title: "كتابة خطة الدرس وفق نموذج 5E",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لصياغة خطة درس وفق نموذج 5E التعليمي: الاستثارة، الاستكشاف، التفسير، التوسع، والتقييم.",
+    sites: ["ChatGPT", "Gemini", "Claude", "MagicSchool"],
+    goodPrompt: "صمّم خطة درس وفق نموذج 5E لمادة [المادة] لصف [الصف] حول [الموضوع] لمدة [45] دقيقة. لكل مرحلة اكتب: النشاط، أسئلة التوجيه، ودور المعلم والطالب.",
+    badPrompt: "لا تدمج مراحل النموذج ببعض، ولا تتجاهل مرحلة التقييم. تأكد من أن كل مرحلة متميزة وواضحة.",
+    tip: "نموذج 5E يبني الفهم تدريجيًا لا يلقي المعلومات دفعة واحدة."
+  },
+  {
+    id: 42, title: "تصميم بطاقات تعليمية Flash Cards",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء بطاقات تعليمية تساعد على الحفظ والمراجعة السريعة للمفاهيم والمصطلحات.",
+    sites: ["ChatGPT", "Canva", "Quizlet", "Gemini"],
+    goodPrompt: "أنشئ 20 بطاقة تعليمية لمراجعة [الموضوع] لصف [الصف]. كل بطاقة: سؤال على الوجه الأول، إجابة مختصرة + مثال على الثاني. رتّب البطاقات من الأسهل للأصعب.",
+    badPrompt: "لا تجعل البطاقات نصية طويلة أو مكتظة بالمعلومات. البطاقة الجيدة تحمل فكرة واحدة واضحة.",
+    tip: "راجع البطاقات على فترات متباعدة للتثبيت الأفضل."
+  },
+  {
+    id: 43, title: "إنشاء أنشطة التعلم بالخدمة",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم مشاريع تربط التعلم بالمجتمع وتنمي المواطنة والمسؤولية الاجتماعية لدى الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Claude"],
+    goodPrompt: "صمّم مشروع تعلم بالخدمة لطلاب [الصف] حول [الموضوع أو القضية المجتمعية]. يتضمن: هدف المشروع، الخطوات التنفيذية، دور الطلاب، ومعيار التقييم.",
+    badPrompt: "لا تقترح مشاريع لا تناسب عمر الطلاب أو تتطلب موارد غير متاحة. تأكد من وجود ارتباط واضح بالمحتوى التعليمي.",
+    tip: "اشرك المجتمع المحلي في تصميم المشروع."
+  },
+  {
+    id: 44, title: "تطوير مهارات الكتابة الأكاديمية",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لتدريب الطلاب على كتابة المقالات والتقارير والمقاطع الأكاديمية بمستوى مناسب.",
+    sites: ["ChatGPT", "Grammarly", "Claude", "Gemini"],
+    goodPrompt: "صمّم تسلسلًا تدريبيًا لتعليم كتابة مقال وصفي لطلاب [الصف] في 4 خطوات. لكل خطوة: المهارة المستهدفة، مثال تطبيقي، وتمرين قصير.",
+    badPrompt: "لا تطلب كتابة كاملة في الخطوة الأولى، ولا تتجاهل التسلسل المنطقي للمهارات. ابدأ من الجملة ثم الفقرة ثم المقال.",
+    tip: "التغذية الراجعة الفورية أهم من الدرجة النهائية."
+  },
+  {
+    id: 45, title: "إنشاء مواد تعليمية للتعلم الذاتي",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإعداد مواد تعليمية مستقلة يمكن للطلاب استخدامها خارج وقت الحصة للتعلم بأنفسهم.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Google Classroom"],
+    goodPrompt: "أعدّ حزمة تعلم ذاتي لوحدة [الوحدة] لصف [الصف] تتضمن: شرح مبسط، أمثلة محلولة، تمارين تطبيقية متدرجة، وروابط مصادر إضافية.",
+    badPrompt: "لا تفترض توفر إنترنت أو أجهزة خاصة لكل طالب. اجعل المحتوى قابلًا للطباعة والاستخدام بدون تكنولوجيا.",
+    tip: "اختبر الحزمة على طالب واحد قبل توزيعها."
+  },
+  {
+    id: 46, title: "تصميم أنشطة حل المشكلات",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء سيناريوهات ومشكلات حقيقية تتطلب تفكيرًا منطقيًا واستراتيجيات حل مبتكرة.",
+    sites: ["ChatGPT", "Claude", "Gemini", "Brisk Teaching"],
+    goodPrompt: "صمّم 4 مشكلات حل إبداعي حول [الموضوع] لطلاب [الصف]. لكل مشكلة: الموقف، البيانات المتاحة، قيد واحد على الحل، وأسئلة توجيهية. أضف نموذج إجابة مرجعية.",
+    badPrompt: "لا تجعل المشكلة ذات حل واحد صحيح فقط، ولا تتجاهل قدرة الطلاب. تأكد من أن البيانات كافية لحل المشكلة.",
+    tip: "شجّع الطلاب على تجربة أكثر من طريقة للحل."
+  },
+  {
+    id: 47, title: "إعداد ملفات الإنجاز الطلابي",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لتصميم هيكل ملف إنجاز يوثّق تطور الطالب ويعكس مستوى أدائه عبر الزمن.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Google Drive"],
+    goodPrompt: "صمّم هيكل ملف إنجاز لطلاب [الصف] لمادة [المادة] خلال فصل دراسي. يتضمن: أقسام التوثيق، نماذج التأمل، أدوات التقييم، وكيفية مشاركته مع أولياء الأمور.",
+    badPrompt: "لا تجعل الملف معقدًا أو يستغرق وقتًا طويلًا في التجميع. ركّز على الأعمال الدالة على النمو لا على كميتها.",
+    tip: "راجع الملف مع الطالب كل شهر."
+  },
+  {
+    id: 48, title: "اقتراح أنشطة لتنمية مهارة الكتابة",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لتوليد أنشطة كتابة متدرجة تساعد الطلاب على بناء الجملة، وتنظيم الفقرة، وتوسيع الأفكار، وتحسين التعبير.",
+    sites: ["ChatGPT", "Gemini", "Grammarly", "Canva"],
+    goodPrompt: "اقترح 5 أنشطة لتنمية مهارة الكتابة لطلاب صف [الصف] حول [الموضوع]. ابدأ بنشاط تمهيدي، ثم نشاط بناء جمل، ثم مهمة كتابة قصيرة.",
+    badPrompt: "لا تقترح أنشطة كتابة طويلة من البداية، ولا تستخدم موضوعات بعيدة عن خبرة الطلاب، ولا تهمل التدرج من السهل إلى الأصعب.",
+    tip: "الكتابة تتحسن بالتدرج والتغذية الراجعة المباشرة لا بطلب نص طويل."
+  },
+  {
+    id: 49, title: "تصميم بيئة صف رقمية جذابة",
+    tags: ["إدارة"],
+    use: "استخدم الذكاء الاصطناعي لتصميم بيئة تعلم رقمية منظمة وجذابة على منصات التعلم الإلكتروني.",
+    sites: ["ChatGPT", "Canva", "Google Classroom", "Microsoft Teams"],
+    goodPrompt: "ساعدني في تصميم هيكل قسم رقمي لمادة [المادة] لصف [الصف] على [المنصة]. يتضمن: تنظيم الوحدات، أسماء الأقسام، طريقة تقديم المحتوى، وإرشادات واضحة للطلاب.",
+    badPrompt: "لا تقترح تصميمًا يتطلب مهارات تقنية متقدمة أو إضافات مدفوعة. اجعل التصميم بسيطًا وسهل التنقل.",
+    tip: "اسأل الطلاب عن سهولة التنقل في البيئة الرقمية."
+  },
+  {
+    id: 50, title: "إنشاء تحديات وعروض معرفية",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم تحديات معرفية وعروض تقديمية تحفز الطلاب على البحث والتعبير عن تعلمهم.",
+    sites: ["ChatGPT", "Canva", "Gemini", "Gamma"],
+    goodPrompt: "صمّم تحديًا معرفيًا لطلاب [الصف] حول [الموضوع]. يتضمن: الهدف، المهمة، طريقة العرض، ومعيار التقييم. اجعله ممتعًا ومحفزًا.",
+    badPrompt: "لا تجعل التحدي مرهقًا أو يعتمد على حفظ لا فهم. تأكد من أن جميع الطلاب يمكنهم المشاركة.",
+    tip: "احتفل بجهود الطلاب لا بإجاباتهم الصحيحة فقط."
+  },
+  {
+    id: 51, title: "إعداد أنشطة التقييم الأقراني",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لتصميم نماذج وأنشطة التقييم بين الأقران لتطوير مهارات التقييم النقدي لدى الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Google Forms", "Peergrade"],
+    goodPrompt: "صمّم نموذج تقييم أقراني لمهمة [المهمة] لصف [الصف]. يتضمن: 6 معايير واضحة، مقياس تقييم، خانة للملاحظات البنّاءة، وإرشادات للمحافظة على الاحترام.",
+    badPrompt: "لا تجعل التقييم ذاتيًا أو شخصيًا. تأكد من أن المعايير محددة وقابلة للملاحظة لا للرأي الشخصي.",
+    tip: "درّب الطلاب على التقييم البنّاء قبل تطبيقه."
+  },
+  {
+    id: 52, title: "تصميم مسابقات تعليمية محفزة",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم مسابقات تعليمية تجمع بين المتعة والتعلم وتحفز الطلاب على المراجعة والتنافس الإيجابي.",
+    sites: ["Quizizz", "Kahoot", "Blooket", "Wordwall"],
+    goodPrompt: "صمّم مسابقة تعليمية حول [الموضوع] لصف [الصف] من 3 جولات. لكل جولة: عدد الأسئلة، نوعها، الزمن، ونظام النقاط. أضف جائزة رمزية للفائزين.",
+    badPrompt: "لا تجعل المسابقة تُرهق الطلاب الخجولين أو تركز على السرعة فقط. تأكد من أن الجميع يشارك.",
+    tip: "استخدم المسابقة كمراجعة ممتعة لا كاختبار رسمي."
+  },
+  {
+    id: 53, title: "إنشاء موارد دعم للتعلم عن بُعد",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لإعداد موارد وأنشطة تناسب بيئة التعلم عن بُعد وتضمن التفاعل والمتابعة عبر الإنترنت.",
+    sites: ["ChatGPT", "Gemini", "Google Meet", "Zoom"],
+    goodPrompt: "صمّم حزمة موارد للتعلم عن بُعد لمادة [المادة] لصف [الصف] لمدة [أسبوع]. تتضمن: أنشطة تزامنية وغير تزامنية، وسائل التواصل، وطريقة المتابعة والتقييم.",
+    badPrompt: "لا تفترض إمكانية وصول جميع الطلاب للإنترنت في كل وقت. وفّر بدائل للطلاب ذوي الاتصال المحدود.",
+    tip: "وحّد قناة التواصل لتجنب التشتت."
+  },
+  {
+    id: 54, title: "تطوير مهارات التفكير الإبداعي",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم أنشطة العصف الذهني والتفكير التباعدي لتحفيز الإبداع والابتكار لدى الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Curipod"],
+    goodPrompt: "اقترح 5 أنشطة عصف ذهني وتفكير إبداعي لطلاب [الصف] حول [الموضوع]. لكل نشاط: طريقة التطبيق، زمنه، ونتاجه المتوقع.",
+    badPrompt: "لا تجعل الأنشطة ذات إجابات صحيحة وحيدة. العصف الذهني يعني قبول جميع الأفكار في البداية.",
+    tip: "لا تنقد الأفكار أثناء جلسة العصف الذهني."
+  },
+  {
+    id: 55, title: "إنشاء دليل الدراسة الشامل",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإعداد دليل دراسة شامل يضم الملاحظات الرئيسية، الأسئلة التوقعية، والاستراتيجيات الفعّالة للمراجعة.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Notion"],
+    goodPrompt: "أعدّ دليل دراسة لامتحان [المادة] لصف [الصف] يتضمن: ملخص الوحدات، أهم 20 نقطة، 15 سؤالًا توقعيًا، واستراتيجيات مراجعة فعّالة موزعة على أيام.",
+    badPrompt: "لا تجعل الدليل نسخة كاملة من الكتاب. ركّز على ما يُتوقع ظهوره في الاختبار بناءً على الأهداف.",
+    tip: "شارك الدليل مع الطلاب قبل أسبوع على الأقل."
+  },
+  {
+    id: 56, title: "تصميم تمارين الفهم العميق",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء تمارين تتجاوز الحفظ وتتطلب التفسير والتطبيق والتحليل والتقييم.",
+    sites: ["ChatGPT", "Claude", "Gemini", "Brisk Teaching"],
+    goodPrompt: "صمّم 6 تمارين فهم عميق حول [الموضوع] لصف [الصف] وفق تصنيف بلوم: تذكر، فهم، تطبيق، تحليل، تقييم، وإبداع. لكل مستوى مثال تطبيقي.",
+    badPrompt: "لا تجعل جميع التمارين في مستوى التذكر والحفظ. ابدأ من الأدنى ثم تصاعد تدريجيًا.",
+    tip: "استهدف مستوى التطبيق على الأقل في كل درس."
+  },
+  {
+    id: 57, title: "إعداد برامج الإثراء للطلاب المتميزين",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتصميم برامج وأنشطة إثرائية تتحدى الطلاب المتميزين وتعمّق فهمهم ومهاراتهم.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Canva"],
+    goodPrompt: "صمّم خطة إثراء لطلاب متميزين في [الصف] حول [الموضوع]. تتضمن: مهام إضافية متحدية، مصادر بحثية، مشروعًا إبداعيًا، وطريقة لمشاركة تعلمهم مع الصف.",
+    badPrompt: "لا تجعل الإثراء مجرد واجبات إضافية من نفس النوع. الإثراء يعني التعمق والتوسع لا التكرار.",
+    tip: "اشرك الطلاب المتميزين في تصميم برنامج الإثراء."
+  },
+  {
+    id: 58, title: "تلخيص الدروس إلى نقاط رئيسية",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لتحويل الدرس إلى ملخص قصير وواضح قبل المراجعة أو بعد الشرح.",
+    sites: ["ChatGPT", "TLDR This", "QuillBot", "Gemini"],
+    goodPrompt: "لخّص درس [الموضوع] لطلاب الصف [الصف] في 7 نقاط رئيسية قصيرة. أضف مثالًا بسيطًا لكل نقطة، ثم اكتب 3 أسئلة سريعة للمراجعة.",
+    badPrompt: "لا تختصر لدرجة حذف الأفكار الأساسية، ولا تستخدم فقرات طويلة أو لغة معقدة، ولا تكرر نفس المعنى.",
+    tip: "الملخص الناجح يركّز على الفكرة لا على نسخ الشرح كاملًا."
+  },
+  {
+    id: 59, title: "تصميم أنشطة التعلم بالاستماع",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإعداد أنشطة تعزز مهارات الاستماع الفعّال وتحليل المحتوى الصوتي والمرئي.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Speechify"],
+    goodPrompt: "صمّم نشاط استماع فعّال حول [الموضوع] لطلاب [الصف]. يتضمن: هدف الاستماع، التعليمات، أسئلة أثناء الاستماع وبعده، ونشاط تطبيقي قصير.",
+    badPrompt: "لا تجعل الاستماع سلبيًا دون تفاعل. يجب أن يكون للطالب دور نشط أثناء الاستماع.",
+    tip: "اخبر الطلاب بهدف الاستماع قبل البدء."
+  },
+  {
+    id: 60, title: "إنشاء خرائط مفاهيمية تفاعلية",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء مخططات وخرائط مفاهيمية تربط المعلومات بشكل بصري وتوضح العلاقات بين الأفكار.",
+    sites: ["ChatGPT", "Canva", "MindMeister", "Lucidchart"],
+    goodPrompt: "أنشئ خريطة مفاهيمية لوحدة [الوحدة] لصف [الصف] تربط المفهوم الرئيسي بـ 5 مفاهيم فرعية مع توضيح نوع العلاقة بينها وأمثلة مختصرة.",
+    badPrompt: "لا تكدّس جميع المعلومات في خريطة واحدة. الخريطة الجيدة تُبسّط لا تُعقّد.",
+    tip: "ابنِ الخريطة مع الطلاب خطوة بخطوة."
+  },
+  {
+    id: 61, title: "تطوير مهارات البحث الأكاديمي",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لتدريب الطلاب على مهارات البحث الأكاديمي والتوثيق واستخدام المصادر الموثوقة.",
+    sites: ["ChatGPT", "Gemini", "Google Scholar", "Claude"],
+    goodPrompt: "صمّم تسلسل تعليمي لتدريب طلاب [الصف] على البحث الأكاديمي. يتضمن: تحديد الموضوع، البحث عن مصادر، تقييم المصدر، التوثيق، والاستشهاد بالمراجع.",
+    badPrompt: "لا تتجاهل مهارة التقييم النقدي للمصادر. ليس كل ما على الإنترنت موثوقًا.",
+    tip: "علّم الطلاب الفرق بين الرأي والمعلومة الموثّقة."
+  },
+  {
+    id: 62, title: "إنشاء أسئلة تتحدى التفكير عالي المستوى",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أسئلة تتجاوز التذكر وتصل إلى مستويات التحليل والتركيب والتقييم وفق بلوم.",
+    sites: ["ChatGPT", "Gemini", "Claude", "QuestionWell"],
+    goodPrompt: "أنشئ 10 أسئلة تفكير عالي المستوى حول [الموضوع] لصف [الصف] وفق مستويات بلوم العليا: تحليل، تقييم، وإبداع. لكل سؤال أضف معيار الإجابة الجيدة.",
+    badPrompt: "لا تطرح أسئلة لها إجابة واحدة فقط في مستويات التفكير العالي. الأسئلة الجيدة تحتمل مسارات متعددة.",
+    tip: "اقبل إجابات متعددة ما دامت مدعومة بالمنطق."
+  },
+  {
+    id: 63, title: "تصميم جلسات التعلم التعاوني الإلكتروني",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم جلسات تعلم جماعي عبر الإنترنت تضمن التفاعل والمشاركة الفعّالة من جميع الطلاب.",
+    sites: ["ChatGPT", "Google Meet", "Miro", "Gemini"],
+    goodPrompt: "صمّم جلسة تعلم تعاوني عبر الإنترنت حول [الموضوع] لمجموعات من [4] طلاب لمدة [30] دقيقة. حدّد الأدوار، المهمة، أدوات التعاون، وطريقة تقديم النتائج.",
+    badPrompt: "لا تجعل الجلسة محاضرة من طالب لآخر. تأكد من توزيع المهام بالتساوي.",
+    tip: "وزّع المجموعات مسبقًا لتوفير الوقت."
+  },
+  {
+    id: 64, title: "إنشاء برامج التوجيه والإرشاد للطلاب",
+    tags: ["إدارة"],
+    use: "استخدم الذكاء الاصطناعي لتصميم برامج توجيه أكاديمي ومهاري تساعد الطلاب على التخطيط لمستقبلهم.",
+    sites: ["ChatGPT", "Gemini", "Claude", "MagicSchool"],
+    goodPrompt: "صمّم خطة إرشاد أكاديمي لطلاب [الصف] خلال فصل دراسي. تتضمن: أهداف فردية، جلسات متابعة، مؤشرات التقدم، وموارد دعم لكل طالب.",
+    badPrompt: "لا تجعل الخطة عامة لجميع الطلاب. الإرشاد الفعّال يعنى بالاحتياجات الفردية.",
+    tip: "ابدأ بجلسة استكشافية لمعرفة اهتمامات الطالب."
+  },
+  {
+    id: 65, title: "تصميم تقييمات الكفاءة والمعايير",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء تقييمات قائمة على الكفايات والمعايير لقياس إتقان الطلاب لمهارات محددة.",
+    sites: ["ChatGPT", "Gemini", "Microsoft Forms", "MagicSchool"],
+    goodPrompt: "صمّم تقييمًا قائمًا على الكفايات لمهارة [المهارة] لصف [الصف]. يتضمن: معايير الإتقان، مستويات الأداء، مهام الإثبات، وتوقعات واضحة للطالب.",
+    badPrompt: "لا تجعل معايير الإتقان غامضة أو قابلة للتأويل. كل معيار يجب أن يكون محددًا وقابلًا للملاحظة.",
+    tip: "شارك معايير الكفاءة مع الطلاب وأولياء الأمور."
+  },
+  {
+    id: 66, title: "إعداد برامج دعم الطلاب الجدد",
+    tags: ["إدارة"],
+    use: "استخدم الذكاء الاصطناعي لإعداد برامج استقبال ودعم للطلاب الجدد تساعدهم على الاندماج والتكيف مع البيئة المدرسية.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Google Slides"],
+    goodPrompt: "صمّم برنامج استقبال للطلاب الجدد في [الصف] أو [المرحلة]. يتضمن: جلسة ترحيب، دليل المدرسة المبسط، نشاط تعارف، وخطة متابعة للأسبوع الأول.",
+    badPrompt: "لا تجعل البرنامج مليئًا بالمعلومات والقواعد في اليوم الأول. ركّز على الترحيب والاندماج الاجتماعي أولًا.",
+    tip: "اجعل الطلاب القدامى شركاء في استقبال الجدد."
+  },
+  {
+    id: 67, title: "تصميم اختبارات الأداء المهاري",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء اختبارات تقيس الأداء المهاري والتطبيق العملي لا الحفظ النظري فقط.",
+    sites: ["ChatGPT", "Gemini", "MagicSchool", "Google Forms"],
+    goodPrompt: "صمّم اختبار أداء مهاري لمهارة [المهارة] لطلاب [الصف]. يتضمن: تعليمات واضحة، مهمة عملية، معيار تقييم، وأسئلة تأمل ذاتي بعد الاختبار.",
+    badPrompt: "لا تجعل الاختبار نظريًا بالكامل أو يعتمد على الحفظ. الأداء المهاري يتطلب تطبيقًا فعليًا.",
+    tip: "قدّم اختبارات الأداء في سياق حقيقي أو شبه حقيقي."
+  },
+  {
+    id: 68, title: "إنشاء نشاط تمييز بين الصح والخطأ",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أنشطة تمييز بين الصح والخطأ تساعد في تشخيص المفاهيم الخاطئة الشائعة بسرعة.",
+    sites: ["ChatGPT", "Gemini", "Google Forms", "QuestionWell"],
+    goodPrompt: "أنشئ لي 10 عبارات صح/خطأ حول [الموضوع] مناسبة لطلاب [الصف]. اجعل العبارات مختلطة بين الصحيحة والخاطئة بشكل واضح، ووفّر مفتاح الإجابة.",
+    badPrompt: "لا تجعل جميع العبارات سهلة وواضحة. لا تستخدم عبارات مُخادعة أو مُلتبسة. لا تُنشئ أكثر من إجابة محتملة.",
+    tip: "استخدم أنشطة الصح والخطأ لكشف المفاهيم الخاطئة بسرعة."
+  },
+  {
+    id: 69, title: "إنشاء نشاط ترتيب وتسلسل",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أنشطة ترتيب وتسلسل تساعد الطلاب على فهم التسلسل المنطقي والتاريخي والعلمي.",
+    sites: ["ChatGPT", "Gemini", "Wordwall", "Quizizz"],
+    goodPrompt: "أنشئ نشاط ترتيب وتسلسل حول [الموضوع] لطلاب [الصف]. يتضمن: 8-10 خطوات أو أحداث مُبعثرة للترتيب، تعليمات واضحة، ومفتاح الترتيب الصحيح.",
+    badPrompt: "لا تجعل الترتيب عشوائيًا بلا منطق واضح. تأكد من أن هناك تسلسلًا صحيحًا موضوعيًا.",
+    tip: "أنشطة التسلسل تُرسّخ الفهم العميق للعمليات والأحداث."
+  },
+  {
+    id: 70, title: "إعداد نشاط المقارنة والمقابلة",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أنشطة مقارنة تساعد الطلاب على تمييز أوجه الشبه والاختلاف بين المفاهيم.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Lucidchart"],
+    goodPrompt: "أنشئ نشاط مقارنة بين [المفهوم الأول] و[المفهوم الثاني] لطلاب [الصف]. يتضمن: جدول مقارنة، 5 أوجه شبه، 5 أوجه اختلاف، وسؤال تحليلي ختامي.",
+    badPrompt: "لا تجعل المقارنة سطحية أو تركز فقط على الاختلافات الشكلية. ابحث عن الفروق الجوهرية.",
+    tip: "المقارنة الجيدة تكشف عن الفهم العميق لكلا المفهومين."
+  },
+  {
+    id: 71, title: "تصميم أنشطة التعلم بالخطأ",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أنشطة تستخدم الأخطاء الشائعة كأداة تعليمية لتعميق الفهم.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Brisk Teaching"],
+    goodPrompt: "أنشئ نشاط 'اكتشف الخطأ' حول [الموضوع] لطلاب [الصف]. يتضمن: 5 أمثلة تحتوي على أخطاء شائعة مخفية، تعليمات الاكتشاف، والتصحيح مع الشرح.",
+    badPrompt: "لا تجعل الأخطاء واضحة جدًا أو مبهمة جدًا. الخطأ الجيد تعليميًا هو الذي يكشف مفهومًا خاطئًا حقيقيًا.",
+    tip: "استخدم أخطاء فعلية من أعمال الطلاب السابقة."
+  },
+  {
+    id: 72, title: "إعداد أنشطة التعلم عبر المشاريع PBL",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتصميم وحدات تعلم قائمة على المشاريع تربط المحتوى بمشكلات حقيقية وتنتج منتجًا ملموسًا.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Google Drive"],
+    goodPrompt: "صمّم وحدة تعلم بالمشاريع PBL حول [الموضوع] لصف [الصف] لمدة [أسبوعين]. تتضمن: السؤال المحوري، مراحل المشروع، الأدوار، الناتج النهائي، ومعيار التقييم.",
+    badPrompt: "لا تجعل المشروع مجرد تقرير مكتوب. PBL يتطلب منتجًا حقيقيًا وحل مشكلة فعلية.",
+    tip: "اشرك الطلاب في تصميم السؤال المحوري للمشروع."
+  },
+  {
+    id: 73, title: "إنشاء خطط الدرس متعددة التخصصات",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لدمج موضوعات من مواد متعددة في درس واحد متكامل يعمّق الفهم الشامل.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Microsoft Copilot"],
+    goodPrompt: "صمّم درسًا متعدد التخصصات يدمج مادة [المادة الأولى] مع [المادة الثانية] لصف [الصف] حول موضوع [الموضوع]. يتضمن: أهداف كل مادة، النشاط المتكامل، والتقييم المشترك.",
+    badPrompt: "لا تدمج المواد بطريقة مبالغ فيها أو مصطنعة. الدمج يجب أن يُثري كلا المادتين لا يُخفّف منهما.",
+    tip: "تعاون مع معلم المادة الأخرى في التخطيط."
+  },
+  {
+    id: 74, title: "تطوير مهارات التقديم والعرض",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم أنشطة تنمي مهارات التقديم الشفهي والعرض الاحترافي لدى الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Gamma"],
+    goodPrompt: "صمّم تسلسلًا تدريبيًا لتطوير مهارات العرض الشفهي لطلاب [الصف] في 5 خطوات. لكل خطوة: المهارة المستهدفة، تمرين تطبيقي، وتغذية راجعة مقترحة.",
+    badPrompt: "لا تركز فقط على محتوى العرض وتتجاهل أسلوب التقديم. المهارات الشفهية تشمل الصوت والتواصل البصري وإدارة الوقت.",
+    tip: "صوّر تدريبات الطلاب للمراجعة الذاتية."
+  },
+  {
+    id: 75, title: "إنشاء استراتيجيات إدارة الصف",
+    tags: ["إدارة"],
+    use: "استخدم الذكاء الاصطناعي لتصميم استراتيجيات فعّالة لإدارة الصف والحفاظ على بيئة تعلم إيجابية ومنظمة.",
+    sites: ["ChatGPT", "Gemini", "Claude", "MagicSchool"],
+    goodPrompt: "اقترح 8 استراتيجيات فعّالة لإدارة صف [الصف] بشكل إيجابي. لكل استراتيجية: الوصف، طريقة التطبيق، والموقف الأنسب لاستخدامها.",
+    badPrompt: "لا تقترح استراتيجيات تعتمد على العقاب أو الإحراج. ركّز على التعزيز الإيجابي وبناء العلاقات.",
+    tip: "استشر الطلاب في وضع قواعد الصف معًا."
+  },
+  {
+    id: 76, title: "تصميم أنشطة التأمل والتفكير الذاتي",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أنشطة التأمل الذاتي التي تساعد الطلاب على مراقبة تعلمهم وتحديد نقاط قوتهم وضعفهم.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Google Forms"],
+    goodPrompt: "صمّم نشاط تأمل ذاتي لطلاب [الصف] بعد وحدة [الوحدة]. يتضمن: 5 أسئلة تأملية حول التعلم، ما تعلمته، ما أحتاج لتحسينه، وهدفي القادم.",
+    badPrompt: "لا تجعل التأمل مجرد استبيان رأي. التأمل الحقيقي يتطلب تفكيرًا عميقًا في عملية التعلم ذاتها.",
+    tip: "خصّص 5 دقائق في نهاية كل أسبوع للتأمل الذاتي."
+  },
+  {
+    id: 77, title: "إعداد موارد التدريب المهني للمعلمين",
+    tags: ["إدارة"],
+    use: "استخدم الذكاء الاصطناعي لإعداد مواد وبرامج التطوير المهني المستمر للمعلمين في مجالات التعليم الحديثة.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Canva"],
+    goodPrompt: "صمّم ورشة تدريبية لمعلمي [المرحلة] حول [الموضوع] لمدة [3] ساعات. تتضمن: أهداف الورشة، محطات التعلم، الأنشطة التطبيقية، وخطة التطبيق بعد الورشة.",
+    badPrompt: "لا تجعل الورشة نظرية بالكامل. التدريب الفعّال يتطلب ممارسة وتطبيقًا فعليًا من المعلمين.",
+    tip: "اطلب من المعلمين تطبيق ما تعلموه خلال أسبوع."
+  },
+  {
+    id: 78, title: "إعداد أنشطة شفوية ومحادثة",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإعداد أنشطة شفوية متنوعة تشجع الطلاب على التحدث، وطرح الأسئلة، وتبادل الآراء في جو منظم ومشجع.",
+    sites: ["ChatGPT", "Curipod", "MagicSchool", "Gemini"],
+    goodPrompt: "اقترح 6 أنشطة شفوية أو أنشطة محادثة حول [الموضوع] لطلاب صف [الصف]. نوّعها بين سؤال وجواب، عمل ثنائي، مناقشة جماعية، ولعبة كلامية. أضف هدف كل نشاط والزمن المناسب له.",
+    badPrompt: "لا تقترح أنشطة تعتمد على التحدث من المعلم فقط، ولا تضع تعليمات غامضة، ولا تجعل الأنشطة طويلة أو غير مناسبة لمستوى العمر.",
+    tip: "النشاط الشفهي الناجح يعطي الطالب فرصة ليتكلم أكثر من أن يسمع فقط."
+  },
+  {
+    id: 79, title: "إنشاء اختبارات الموضوعية الشاملة",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لبناء اختبارات موضوعية شاملة تغطي جميع مستويات المعرفة وأهداف الوحدة.",
+    sites: ["ChatGPT", "Gemini", "QuestionWell", "Google Forms"],
+    goodPrompt: "أنشئ اختبارًا موضوعيًا شاملًا لوحدة [الوحدة] لصف [الصف] من 30 سؤالًا: 15 اختيار متعدد، 8 صح وخطأ، 7 أكمل. غطّ جميع الأهداف، وأضف مفتاح الإجابة.",
+    badPrompt: "لا تركّز على هدف واحد وتهمل الباقي. توزّع الأسئلة على جميع محاور الوحدة بالتساوي.",
+    tip: "تحقّق من توزيع الأسئلة على الأهداف قبل طباعة الاختبار."
+  },
+  {
+    id: 80, title: "تصميم برنامج القيم والتعليم الأخلاقي",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتصميم برامج وأنشطة تنمي القيم والأخلاق والمواطنة الإيجابية لدى الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Claude"],
+    goodPrompt: "صمّم وحدة تعليمية لتنمية قيمة [القيمة] لطلاب [الصف]. تتضمن: قصة توضيحية، نشاط تفاعلي، موقف للنقاش، وتعهد شخصي للطالب.",
+    badPrompt: "لا تعظ الطلاب بشكل مباشر. الأفضل تقديم مواقف حقيقية تُحفّزهم على التفكير والقرار.",
+    tip: "النماذج الإيجابية الحية أقوى من المحاضرات الأخلاقية."
+  },
+  {
+    id: 81, title: "إنشاء محتوى التعلم المتمايز",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتصميم محتوى تعليمي متمايز يراعي مستويات الطلاب المختلفة في نفس الصف.",
+    sites: ["ChatGPT", "Diffit", "Gemini", "MagicSchool"],
+    goodPrompt: "صمّم وحدة تعليمية متمايزة لموضوع [الموضوع] لصف [الصف] في 3 مستويات. لكل مستوى: المحتوى المناسب، الأنشطة، والتقييم. احتفظ بنفس الهدف التعليمي للجميع.",
+    badPrompt: "لا تجعل المستوى الأدنى أقل تحديًا بشكل مبالغ فيه. التمايز يعني طرقًا مختلفة للوصول لنفس الهدف.",
+    tip: "لا تُعلن عن مستويات الطلاب أمام الصف."
+  },
+  {
+    id: 82, title: "تصميم أنشطة التفكير الحاسوبي",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أنشطة تنمي مهارات التفكير الحاسوبي والخوارزمي لدى الطلاب.",
+    sites: ["ChatGPT", "Scratch", "Gemini", "Code.org"],
+    goodPrompt: "صمّم 4 أنشطة لتنمية التفكير الحاسوبي لطلاب [الصف] تشمل: التحليل، التجزئة، التعرف على الأنماط، والتجريد. لكل نشاط اكتب التعليمات وطريقة التقييم.",
+    badPrompt: "لا تجعل الأنشطة تعتمد كليًا على الكمبيوتر. التفكير الحاسوبي يمكن تعليمه بدون أجهزة.",
+    tip: "أنشطة التفكير الحاسوبي غير المتصلة بالإنترنت فعّالة جدًا."
+  },
+  {
+    id: 83, title: "إنشاء أنشطة الذكاء الاصطناعي للأخلاقيات",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم أنشطة وحوارات تعلّم الطلاب الاستخدام الأخلاقي والمسؤول للذكاء الاصطناعي.",
+    sites: ["ChatGPT", "Gemini", "Claude", "Canva"],
+    goodPrompt: "صمّم نشاطًا تعليميًا حول أخلاقيات الذكاء الاصطناعي لطلاب [الصف]. يتضمن: حالات دراسية للنقاش، أسئلة تأملية، وإرشادات الاستخدام المسؤول.",
+    badPrompt: "لا تقدّم موضوع أخلاقيات الذكاء الاصطناعي بطريقة مخيفة. ابنِ الوعي والتفكير النقدي لا الخوف.",
+    tip: "اجعل الطلاب يضعون قواعد الاستخدام المسؤول بأنفسهم."
+  },
+  {
+    id: 84, title: "إعداد برامج التنمية الاجتماعية والعاطفية",
+    tags: ["إدارة"],
+    use: "استخدم الذكاء الاصطناعي لتصميم برامج وأنشطة التعلم الاجتماعي والعاطفي SEL لبناء شخصية الطالب.",
+    sites: ["ChatGPT", "Gemini", "Canva", "MagicSchool"],
+    goodPrompt: "صمّم وحدة تعليمية لمهارة [المهارة الاجتماعية] لطلاب [الصف]. تتضمن: موقف توضيحي، نشاط تفاعلي، أسئلة تأمل، وممارسة يومية مقترحة.",
+    badPrompt: "لا تتجاهل التنوع الثقافي في تدريس المهارات الاجتماعية. ما هو مناسب في ثقافة قد يختلف في أخرى.",
+    tip: "ادمج مهارات SEL في المواد الدراسية لا كمادة منفصلة."
+  },
+  {
+    id: 85, title: "تصميم برامج القيادة الطلابية",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم أنشطة وبرامج تنمي مهارات القيادة والمبادرة والمسؤولية لدى الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Claude"],
+    goodPrompt: "صمّم برنامجًا لتنمية مهارات القيادة لطلاب [الصف] لمدة [شهر]. يتضمن: أنشطة تحدي، تجارب القيادة في الصف، مشروعًا مبادراتيًا، ومعيار تقييم النمو.",
+    badPrompt: "لا تقصر القيادة على الطلاب الأكثر تفوقًا. كل طالب لديه قدرات قيادية يمكن تنميتها.",
+    tip: "أعطِ كل طالب فرصة لقيادة نشاط ما خلال العام."
+  },
+  {
+    id: 86, title: "إنشاء أنشطة تعلم اللغات الأجنبية",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أنشطة ووسائل لتعلم اللغات الأجنبية تجعل الاكتساب اللغوي ممتعًا وفعّالًا.",
+    sites: ["ChatGPT", "Gemini", "Duolingo", "Quizlet"],
+    goodPrompt: "صمّم وحدة تعلم لغة [اللغة] لطلاب [الصف] حول موضوع [الموضوع]. تتضمن: مفردات جديدة، حوار نموذجي، تمارين سماع وكتابة، وأنشطة تواصل حقيقية.",
+    badPrompt: "لا تركز فقط على القواعد والحفظ. التعلم اللغوي الفعّال يحتاج استخدامًا حقيقيًا للغة.",
+    tip: "أنشئ فرصًا حقيقية للاستخدام اللغوي خارج الكتاب."
+  },
+  {
+    id: 87, title: "تصميم رحلات تعليمية افتراضية",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم رحلات ميدانية افتراضية تنقل الطلاب إلى أماكن ومواضيع يصعب الوصول إليها فعليًا.",
+    sites: ["ChatGPT", "Gemini", "Google Earth", "Canva"],
+    goodPrompt: "صمّم رحلة تعليمية افتراضية إلى [المكان أو الموضوع] لطلاب [الصف]. تتضمن: مراحل الرحلة، الأنشطة في كل محطة، أسئلة الاستكشاف، وتقرير ختامي للطلاب.",
+    badPrompt: "لا تجعل الرحلة مجرد مشاهدة فيديو. يجب أن يكون للطالب دور نشط في كل محطة.",
+    tip: "دع الطلاب يختارون محطة للاستكشاف المعمّق."
+  },
+  {
+    id: 88, title: "تصميم الألعاب التعليمية التفاعلية",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لتصميم ألعاب تعليمية تفاعلية تعزز المراجعة والمشاركة والتحديات الجماعية.",
+    sites: ["Wordwall", "Quizizz", "Blooket", "Educandy"],
+    goodPrompt: "اقترح لعبة تعليمية تفاعلية حول [الموضوع] لطلاب الصف [الصف]. اكتب هدف اللعبة، القواعد، 8 أسئلة أو بطاقات، وطريقة تحديد الفائز.",
+    badPrompt: "لا تجعل اللعبة معقدة أو معتمدة فقط على السرعة، ولا تضع أسئلة بعيدة عن هدف الدرس، ولا تهمل السلامة وإدارة الوقت.",
+    tip: "اللعبة الناجحة تراجع الهدف التعليمي قبل أن تبحث عن الحماس."
+  },
+  {
+    id: 89, title: "إعداد مواد تعليمية للتعليم المبكر",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء مواد ومحتوى تعليمي مناسب لمرحلة الطفولة المبكرة والتعليم قبل المدرسي.",
+    sites: ["ChatGPT", "Canva", "Gemini", "Storybird"],
+    goodPrompt: "صمّم نشاطًا تعليميًا لأطفال [العمر] حول مفهوم [المفهوم]. يتضمن: قصة قصيرة مصورة، نشاطًا حركيًا، ونشاطًا فنيًا. استخدم لغة بسيطة وإيجابية.",
+    badPrompt: "لا تستخدم مصطلحات أكاديمية معقدة مع الأطفال الصغار. ركّز على التجربة الحسية والاكتشاف.",
+    tip: "التعلم من خلال اللعب هو الأمثل للأطفال الصغار."
+  },
+  {
+    id: 90, title: "تصميم برامج التعليم الشامل",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتصميم بيئات ومواد تعليمية شاملة تناسب جميع الطلاب بغض النظر عن قدراتهم أو خلفياتهم.",
+    sites: ["ChatGPT", "Gemini", "Diffit", "MagicSchool"],
+    goodPrompt: "صمّم درسًا وفق مبادئ التعليم الشامل UDL لموضوع [الموضوع] لصف [الصف]. يتضمن: تمثيلات متعددة للمحتوى، خيارات للتعبير، وطرق متعددة للتفاعل.",
+    badPrompt: "لا تصمم درسًا 'شاملًا' يبقى في الواقع متمحورًا حول أسلوب واحد. الشمول الحقيقي يعني خيارات فعلية متعددة.",
+    tip: "راجع التصميم الشامل مع معلم التربية الخاصة."
+  },
+  {
+    id: 91, title: "إنشاء محتوى الواقع المعزز التعليمي",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لتصميم محتوى وأنشطة تستخدم تقنيات الواقع المعزز لتعزيز الفهم والاستكشاف.",
+    sites: ["ChatGPT", "Gemini", "Canva", "CoSpaces"],
+    goodPrompt: "صمّم نشاطًا تعليميًا باستخدام الواقع المعزز لموضوع [الموضوع] لصف [الصف]. حدّد: المفهوم المراد تصويره، طريقة التفاعل، وأسئلة الاستكشاف للطلاب.",
+    badPrompt: "لا تستخدم الواقع المعزز فقط للإبهار. يجب أن يضيف قيمة تعليمية حقيقية لا تتوفر بدونه.",
+    tip: "اختبر التقنية قبل استخدامها مع الطلاب."
+  },
+  {
+    id: 92, title: "تصميم أنشطة التعلم بالاستقصاء العلمي",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء تجارب وأنشطة استقصاء علمي تُطوّر مهارات التفكير العلمي والملاحظة.",
+    sites: ["ChatGPT", "Gemini", "PhET", "Claude"],
+    goodPrompt: "صمّم نشاط استقصاء علمي حول [الظاهرة العلمية] لطلاب [الصف]. يتضمن: السؤال العلمي، الفرضية، خطوات التجربة، جدول البيانات، والاستنتاجات.",
+    badPrompt: "لا تحدد النتيجة مسبقًا للطلاب. الاستقصاء الحقيقي يعني اكتشاف النتيجة من خلال الملاحظة والتحليل.",
+    tip: "شجّع الطلاب على تسجيل الملاحظات المفاجئة وغير المتوقعة."
+  },
+  {
+    id: 93, title: "إعداد برامج القراءة المستمرة",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لتصميم برامج القراءة المستقلة التي تنمي حب القراءة وتعزز مهارات الاستيعاب.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Newsela"],
+    goodPrompt: "صمّم برنامج قراءة مستقلة لطلاب [الصف] لمدة [شهر]. يتضمن: معيار اختيار الكتب، أهداف أسبوعية، نماذج استجابة للقراءة، وطريقة المشاركة مع الصف.",
+    badPrompt: "لا تفرض كتبًا معينة بالكامل. أعطِ الطلاب خيارات تناسب اهتماماتهم وقدراتهم.",
+    tip: "احتفل بإنجازات القراءة لبناء الدافعية."
+  },
+  {
+    id: 94, title: "تصميم نماذج التقييم التكويني",
+    tags: ["تقييم"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أدوات تقييم تكويني مستمرة تتيح المراقبة الدورية لتقدم الطلاب.",
+    sites: ["ChatGPT", "Gemini", "Seesaw", "Google Forms"],
+    goodPrompt: "صمّم نظام تقييم تكويني أسبوعي لمادة [المادة] لصف [الصف]. يتضمن: أداة رصد تقدم الطلاب، مؤشرات الأداء، وخطة استجابة سريعة لكل مستوى.",
+    badPrompt: "لا تجعل التقييم التكويني عبئًا إضافيًا. يجب أن يكون بسيطًا وقابلًا للتطبيق بانتظام.",
+    tip: "التقييم التكويني الفعّال يغيّر التدريس في الوقت المناسب."
+  },
+  {
+    id: 95, title: "إنشاء برامج التعلم القائم على الكفايات",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتصميم مناهج وتقييمات قائمة على الكفايات تتيح للطلاب التقدم بناءً على الإتقان.",
+    sites: ["ChatGPT", "Gemini", "Claude", "MagicSchool"],
+    goodPrompt: "صمّم إطار كفايات لمادة [المادة] لصف [الصف]. يتضمن: قائمة الكفايات الأساسية، مؤشرات الأداء لكل كفاية، طريقة إثبات الإتقان، وخطة التقدم.",
+    badPrompt: "لا تجعل الكفايات غامضة أو كثيرة جدًا. ركّز على الكفايات الجوهرية التي تبني عليها.",
+    tip: "ابدأ بعدد محدود من الكفايات وأضف تدريجيًا."
+  },
+  {
+    id: 96, title: "تصميم أنشطة التعلم من الطبيعة",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء أنشطة تعلم مبنية على الاستكشاف الطبيعي والتعلم خارج الفصل.",
+    sites: ["ChatGPT", "Gemini", "Canva", "iNaturalist"],
+    goodPrompt: "صمّم نشاطًا تعليميًا خارج الفصل لطلاب [الصف] حول موضوع [الموضوع]. يتضمن: أهداف التعلم، مراحل النشاط، ما يجب ملاحظته، وكيفية توثيق الاكتشافات.",
+    badPrompt: "لا تنظّم الأنشطة الخارجية بدون ضمان السلامة. كل نشاط خارجي يحتاج إجراءات سلامة واضحة.",
+    tip: "الطبيعة أفضل فصل دراسي — استخدمها بذكاء."
+  },
+  {
+    id: 97, title: "إنشاء مواد لتعليم مهارات القرن الحادي والعشرين",
+    tags: ["محتوى"],
+    use: "استخدم الذكاء الاصطناعي لتصميم مواد وأنشطة تنمي مهارات القرن الحادي والعشرين: التواصل، التعاون، التفكير النقدي، والإبداع.",
+    sites: ["ChatGPT", "Gemini", "Canva", "Microsoft Teams"],
+    goodPrompt: "صمّم وحدة تعليمية تنمي مهارات القرن الحادي والعشرين الـ4C لطلاب [الصف]. لكل مهارة: نشاط محدد، طريقة التطبيق، ومعيار التقييم.",
+    badPrompt: "لا تدّعي أن كل نشاط عادي ينمي مهارات القرن الحادي والعشرين. هذه المهارات تحتاج تصميمًا متعمدًا.",
+    tip: "ادمج المهارات الأربع في مشروع واحد متكامل."
+  },
+  {
+    id: 98, title: "إعداد استراتيجيات التعليم المتمايز المتقدمة",
+    tags: ["تخطيط"],
+    use: "استخدم الذكاء الاصطناعي لتطوير استراتيجيات تعليم متمايز متقدمة تراعي أنماط التعلم والاستعداد والاهتمامات.",
+    sites: ["ChatGPT", "Gemini", "Diffit", "MagicSchool"],
+    goodPrompt: "صمّم استراتيجية تعليم متمايز متقدمة لوحدة [الوحدة] لصف [الصف]. تتضمن: تمييزًا في المحتوى، العملية، والناتج. لكل فئة طلاب حدّد النهج المناسب.",
+    badPrompt: "لا تبالغ في التعقيد. التمايز الفعّال يبدأ بخطوة واحدة تُنفّذ جيدًا.",
+    tip: "ابدأ بتمييز الناتج كأسهل خطوة في التعليم المتمايز."
+  },
+  {
+    id: 99, title: "ابتكار أفكار إبداعية لتعليم ممتع",
+    tags: ["تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لاقتراح أفكار مبتكرة تجعل الدرس أكثر تفاعلًا ومتعة دون فقدان الهدف التعليمي.",
+    sites: ["ChatGPT", "Canva", "Curipod", "MagicSchool"],
+    goodPrompt: "اقترح 5 أفكار إبداعية لتدريس [الموضوع] لطلاب الصف [الصف]. تجعل الدرس أكثر تفاعلًا ومتعة، مع وصف قصير لكل فكرة وطريقة تنفيذ سريعة.",
+    badPrompt: "لا تقترح أفكارًا صعبة التنفيذ أو غير مناسبة للصف، ولا تجعل التفاعل يطغى على الهدف التعليمي.",
+    tip: "الفكرة الممتعة الناجحة تخدم الهدف وليس العكس."
+  },
+  {
+    id: 100, title: "عرض وتقديم المشاريع بأسلوب احترافي",
+    tags: ["تقييم", "تفاعل"],
+    use: "استخدم الذكاء الاصطناعي لإنشاء عروض تقديمية احترافية وملفات عرض جذابة تتناسب مع جمهورك وأهداف مشروعك.",
+    sites: ["Canva", "Tome", "Beautiful.ai", "Gamma"],
+    goodPrompt: "أنشئ عرضًا تقديميًا مكوّنًا من 10 شرائح حول [موضوع المشروع]، يتضمن: المقدمة، المشكلة، الحل المقترح، خطة التنفيذ، التوقعات والنتائج، مع تصميم عصري وألوان متناسقة.",
+    badPrompt: "تجنب استخدام تصاميم مكتظة أو معلومات زائدة على كل شريحة، ولا تجعل النصوص طويلة. ركّز على البساطة، الوضوح، والرسائل البصرية القوية.",
+    tip: "تدرّب على تقديم عرضك أكثر من مرة لتحسين ثقتك وأسلوبك."
+  }
+];
+
+// Tag color map
+const tagColors = {
+  'تخطيط': '#1565c0',
+  'تقييم': '#6a1b9a',
+  'محتوى': '#00695c',
+  'تفاعل': '#e65100',
+  'إدارة': '#c62828'
+};
+
+const grid = document.getElementById('cardsGrid');
+const searchInput = document.getElementById('searchInput');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const countLabel = document.getElementById('countLabel');
+const emptyState = document.getElementById('emptyState');
+
+let activeFilter = 'all';
+
+// Build cards
+usages.forEach(u => {
+  const tagList = u.tags.map(t => `<span class="site-tag" style="background:${tagColors[t]}1a;border-color:${tagColors[t]}55;color:${tagColors[t]}">${t}</span>`).join('');
+  const sitesList = u.sites.map(s => `<span class="site-tag">${s}</span>`).join('');
+
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.tags = u.tags.join(',');
+  card.dataset.text = `${u.title} ${u.use} ${u.sites.join(' ')} ${u.goodPrompt} ${u.badPrompt} ${u.tip}`.toLowerCase();
+
+  card.innerHTML = `
+    <div class="card-header">
+      <span class="card-num">${u.id}</span>
+      <div>
+        <div class="card-title">${u.title}</div>
+        <div style="margin-top:6px">${tagList}</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="section-label label-use">🎯 الاستخدام</div>
+      <div class="card-text">${u.use}</div>
+      <div class="section-label label-sites">🌐 المواقع المجانية</div>
+      <div class="sites-row">${sitesList}</div>
+    </div>
+    <button class="prompt-toggle" onclick="toggleCard(this)">
+      <span>📋 البرومبتات والنصيحة</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="prompt-details">
+      <div class="section-label label-good" style="margin-top:8px">✅ البرومبت المثالي</div>
+      <div class="prompt-box prompt-good">${u.goodPrompt}</div>
+      <button class="copy-btn" onclick="copyText(this, \`${u.goodPrompt.replace(/`/g, '\\`')}\`)">📋 نسخ البرومبت</button>
+
+      <div class="section-label label-bad" style="margin-top:10px">🚫 البرومبت العكسي</div>
+      <div class="prompt-box prompt-bad">${u.badPrompt}</div>
+
+      <div class="section-label label-tip" style="margin-top:10px">💡 نصيحة</div>
+      <div class="prompt-box prompt-tip">${u.tip}</div>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+
+function toggleCard(btn) {
+  btn.classList.toggle('open');
+  const details = btn.nextElementSibling;
+  details.classList.toggle('open');
+}
+
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ تم النسخ!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 نسخ البرومبت'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function filterCards() {
+  const query = searchInput.value.trim().toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  let visible = 0;
+
+  cards.forEach(card => {
+    const matchSearch = !query || card.dataset.text.includes(query);
+    const matchFilter = activeFilter === 'all' || card.dataset.tags.includes(activeFilter);
+    if (matchSearch && matchFilter) {
+      card.classList.remove('hidden');
+      visible++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  countLabel.textContent = `${visible} استخدام`;
+  emptyState.classList.toggle('show', visible === 0);
+}
+
+searchInput.addEventListener('input', filterCards);
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    filterCards();
+  });
+});
+
+// ===== BOTTOM NAV filter =====
+function setFilter(btn) {
+  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.filter;
+  // Also sync desktop filter buttons
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === activeFilter);
+  });
+  filterCards();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ===== SERVICE WORKER =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg.scope))
+      .catch(err => console.log('SW error:', err));
+  });
+}
+
+// ===== PWA INSTALL PROMPT =====
+let deferredPrompt;
+const installBanner = document.getElementById('installBanner');
+const installBtn = document.getElementById('installBtn');
+const closeInstall = document.getElementById('closeInstall');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show after 3 seconds
+  setTimeout(() => {
+    if (!localStorage.getItem('installDismissed')) {
+      installBanner.classList.add('show');
+    }
+  }, 3000);
+});
+
+if (installBtn) {
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBanner.classList.remove('show');
+  });
+}
+
+if (closeInstall) {
+  closeInstall.addEventListener('click', () => {
+    installBanner.classList.remove('show');
+    localStorage.setItem('installDismissed', '1');
+  });
+}
+
+// Hide banner if already installed
+window.addEventListener('appinstalled', () => {
+  installBanner.classList.remove('show');
+});
+
+</script>
+</body>
+</html>
