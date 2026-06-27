@@ -382,12 +382,23 @@
   /* ===== FOOTER ===== */
   footer {
     background: var(--navy);
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.75);
     text-align: center;
-    padding: 24px 20px;
+    padding: 36px 20px 28px;
     font-size: 0.85rem;
+    line-height: 2;
   }
   footer strong { color: var(--gold); }
+  .footer-divider {
+    width: 60px; height: 3px;
+    background: var(--gold);
+    margin: 14px auto;
+    border-radius: 3px;
+    opacity: 0.5;
+  }
+  .footer-name { font-size: 1.05rem; font-weight: 700; color: white; }
+  .footer-ref  { font-size: 0.8rem; opacity: 0.7; margin-top: 4px; }
+  .footer-tools { font-size: 0.75rem; opacity: 0.55; margin-top: 6px; }
 
   /* ===== INSTALL BANNER ===== */
   .install-banner {
@@ -577,7 +588,26 @@
 </nav>
 
 <footer>
-  <p>بإشراف <strong>Instgraphic Academy for Development</strong> · أدوات ذكية · تعليم مفهوم · مستقبل أفضل</p>
+  <div class="footer-name">
+    📘 إعداد: <strong>عبدالرحمن عوض الكريم عبدالرحمن</strong>
+  </div>
+  <div class="footer-ref">
+    بالاستعانة بأدوات الذكاء الاصطناعي · <strong>Claude (Anthropic)</strong>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-ref">
+    📚 المرجع الأول: <strong>Instgraphic Academy for Development</strong>
+  </div>
+  <div class="footer-ref">
+    🔗 المرجع الثاني: <strong>GitHub</strong> —
+    <a href="https://gido70.github.io/Ai-Edu-App/" target="_blank"
+       style="color:var(--gold);text-decoration:none;">
+      gido70.github.io/Ai-Edu-App
+    </a>
+  </div>
+  <div class="footer-tools">
+    أدوات ذكية · تعليم مفهوم · مستقبل أفضل
+  </div>
 </footer>
 
 <script>
