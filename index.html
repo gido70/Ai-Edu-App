@@ -8,6 +8,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="AI للمعلمين">
 <meta name="theme-color" content="#0a1e4a">
+<meta name="copyright" content="عبدالرحمن عوض الكريم عبدالرحمن - Instgraphic Academy">
+<meta name="author" content="عبدالرحمن عوض الكريم عبدالرحمن">
+<meta name="robots" content="index, follow">
 <meta name="description" content="100 استخدام عملي للذكاء الاصطناعي في التعليم — أدوات مجانية وبرومبتات احترافية للمعلمين">
 
 <!-- Open Graph / WhatsApp Preview -->
@@ -650,6 +653,115 @@ window.addEventListener('appinstalled',()=>bar.classList.remove('show'));
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
 }
+</script>
+
+<style>
+/* ── CONTENT PROTECTION ── */
+.card-body, .pbox, .card-title, .hero h1, .hero p {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Watermark on print */
+@media print {
+  body::before {
+    content: "إعداد: عبدالرحمن عوض الكريم عبدالرحمن | gido70.github.io/Ai-Edu-App";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(-35deg);
+    font-size: 28px;
+    color: rgba(10,30,74,0.12);
+    white-space: nowrap;
+    z-index: 9999;
+    pointer-events: none;
+    font-weight: 900;
+  }
+  .inst-bar, .bnav, .scroll-top { display: none !important; }
+}
+</style>
+
+<script>
+// ── PROTECTION ──
+
+// 1. Disable right click
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// 2. Disable F12, Ctrl+U, Ctrl+Shift+I, Ctrl+S
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && e.key === 'u') ||
+    (e.ctrlKey && e.key === 'U') ||
+    (e.ctrlKey && e.key === 's') ||
+    (e.ctrlKey && e.key === 'S') ||
+    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+    (e.ctrlKey && e.shiftKey && e.key === 'i') ||
+    (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+    (e.ctrlKey && e.shiftKey && e.key === 'C')
+  ) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+// 3. Disable text selection on content
+document.addEventListener('selectstart', e => {
+  if (e.target.closest('.card-body, .pbox, .card-title, .hero')) {
+    e.preventDefault();
+  }
+});
+
+// 4. Disable drag
+document.addEventListener('dragstart', e => e.preventDefault());
+
+// 5. Detect DevTools open (basic)
+(function(){
+  const threshold = 160;
+  setInterval(()=>{
+    if(
+      window.outerWidth - window.innerWidth > threshold ||
+      window.outerHeight - window.innerHeight > threshold
+    ){
+      document.body.innerHTML = `
+        <div style="
+          display:flex;flex-direction:column;align-items:center;
+          justify-content:center;min-height:100vh;
+          background:#0a1e4a;color:white;text-align:center;
+          font-family:Tajawal,sans-serif;padding:40px;
+        ">
+          <div style="font-size:4rem;margin-bottom:20px">🔒</div>
+          <h2 style="color:#f5c518;font-size:1.5rem;margin-bottom:12px">
+            هذا المحتوى محمي بحقوق الملكية
+          </h2>
+          <p style="opacity:.8;line-height:2;max-width:400px">
+            إعداد: عبدالرحمن عوض الكريم عبدالرحمن<br>
+            المرجع: Instgraphic Academy for Development<br>
+            <span style="color:#f5c518">gido70.github.io/Ai-Edu-App</span>
+          </p>
+          <button onclick="location.reload()"
+            style="margin-top:24px;background:#f5c518;color:#0a1e4a;
+            border:none;border-radius:50px;padding:12px 28px;
+            font-size:1rem;font-weight:900;cursor:pointer;
+            font-family:Tajawal,sans-serif;">
+            العودة للموقع
+          </button>
+        </div>`;
+    }
+  }, 1000);
+})();
+
+// 6. Copyright console message
+console.log(
+  '%c🔒 محمي بحقوق الملكية',
+  'color:#f5c518;background:#0a1e4a;font-size:18px;padding:10px 20px;border-radius:8px;font-weight:bold;'
+);
+console.log(
+  '%cإعداد: عبدالرحمن عوض الكريم عبدالرحمن
+المرجع: Instgraphic Academy for Development',
+  'color:#1565c0;font-size:13px;'
+);
 </script>
 </body>
 </html>
