@@ -193,9 +193,30 @@ body{font-family:'Amiri','Tajawal',sans-serif;background:var(--bg);color:var(--n
 
 .sites-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px}
 .site{
-  background:#f0f5ff;border:1px solid var(--border);
-  border-radius:50px;padding:3px 11px;
+  display:inline-flex;align-items:center;gap:5px;
+  background:#f0f5ff;border:1.5px solid var(--border);
+  border-radius:50px;padding:5px 13px;
   font-size:.76rem;font-weight:700;color:var(--blue);
+  text-decoration:none;cursor:pointer;
+  transition:all .18s;
+}
+.site:hover{
+  background:var(--sky);color:white;
+  border-color:var(--sky);
+  transform:translateY(-1px);
+  box-shadow:0 3px 10px rgba(30,136,229,.25);
+}
+.site-top{
+  background:#e3f2fd;border-color:var(--sky);
+  color:var(--blue);font-weight:900;
+}
+.site-top:hover{background:var(--blue);color:white;border-color:var(--blue);}
+.site-icon{font-size:.85rem;line-height:1;}
+.site-badge{
+  background:var(--gold);color:var(--navy);
+  font-size:.6rem;font-weight:900;
+  border-radius:50px;padding:1px 6px;
+  margin-right:2px;
 }
 
 
@@ -299,6 +320,8 @@ body{font-family:'Amiri','Tajawal',sans-serif;background:var(--bg);color:var(--n
 .copy-btn.ok{background:var(--green)}
 .copy-bad{background:#e53935;}
 .copy-bad:hover{background:#b71c1c;}
+.copy-open{background:linear-gradient(135deg,#1565c0,#0a1e4a);}
+.copy-open:hover{background:linear-gradient(135deg,#0a1e4a,#1565c0);}
 
 /* ── EMPTY ── */
 .empty{text-align:center;padding:60px 20px;display:none}
@@ -611,7 +634,75 @@ data.forEach(u => {
     return `<span class="tag" style="background:${bg};color:${cl}">${t}</span>`;
   }).join('');
 
-  const sites = u.sites.map(s=>`<span class="site">${s}</span>`).join('');
+  // روابط المواقع
+const siteUrls = {
+  'ChatGPT':          'https://chatgpt.com',
+  'Gemini':           'https://gemini.google.com',
+  'Claude':           'https://claude.ai',
+  'Microsoft Copilot':'https://copilot.microsoft.com',
+  'Canva':            'https://www.canva.com',
+  'Gamma':            'https://gamma.app',
+  'MagicSchool':      'https://www.magicschool.ai',
+  'Diffit':           'https://diffit.me',
+  'Brisk Teaching':   'https://www.briskteaching.com',
+  'Curipod':          'https://curipod.com',
+  'Quizizz':          'https://quizizz.com',
+  'Wordwall':         'https://wordwall.net',
+  'Kahoot':           'https://kahoot.com',
+  'Blooket':          'https://www.blooket.com',
+  'Educandy':         'https://www.educandy.com',
+  'QuestionWell':     'https://questionwell.org',
+  'Google Forms':     'https://forms.google.com',
+  'Microsoft Forms':  'https://forms.microsoft.com',
+  'Peergrade':        'https://www.peergrade.io',
+  'Seesaw':           'https://web.seesaw.me',
+  'Newsela':          'https://newsela.com',
+  'Storybird':        'https://storybird.com',
+  'Quizlet':          'https://quizlet.com',
+  'Grammarly':        'https://www.grammarly.com',
+  'QuillBot':         'https://quillbot.com',
+  'MindMeister':      'https://www.mindmeister.com',
+  'Lucidchart':       'https://www.lucidchart.com',
+  'Notion':           'https://www.notion.so',
+  'Google Classroom': 'https://classroom.google.com',
+  'Google Scholar':   'https://scholar.google.com',
+  'Google Meet':      'https://meet.google.com',
+  'Microsoft Teams':  'https://teams.microsoft.com',
+  'Miro':             'https://miro.com',
+  'Zoom':             'https://zoom.us',
+  'Duolingo':         'https://www.duolingo.com',
+  'Scratch':          'https://scratch.mit.edu',
+  'Code.org':         'https://code.org',
+  'PhET':             'https://phet.colorado.edu',
+  'iNaturalist':      'https://www.inaturalist.org',
+  'Speechify':        'https://speechify.com',
+  'CoSpaces':         'https://cospaces.io',
+  'Tome':             'https://tome.app',
+  'Beautiful.ai':     'https://www.beautiful.ai',
+  'TLDR This':        'https://tldrthis.com',
+  'Google Earth':     'https://earth.google.com',
+  'Difffit':          'https://diffit.me',
+};
+
+const siteIcons = {
+  'ChatGPT':'🤖','Gemini':'✨','Claude':'🧠','Microsoft Copilot':'💠',
+  'Canva':'🎨','Gamma':'⚡','MagicSchool':'🏫','Diffit':'📄',
+  'Brisk Teaching':'🚀','Curipod':'🎯','Quizizz':'🎮','Wordwall':'🔤',
+  'Kahoot':'📊','Blooket':'🐾','QuestionWell':'❓','Google Forms':'📋',
+  'Newsela':'📰','Storybird':'📖','Quizlet':'🃏','Grammarly':'✍️',
+  'QuillBot':'🔄','MindMeister':'🧩','Notion':'📝','Zoom':'📹',
+  'Duolingo':'🦜','Scratch':'🐱','Code.org':'💻','PhET':'🔬',
+  'Tome':'📐','Beautiful.ai':'💎','Google Meet':'📹','Miro':'🖌️',
+};
+
+const sites = u.sites.map((s,i) => {
+  const url = siteUrls[s] || '#';
+  const icon = siteIcons[s] || '🌐';
+  const rank = i === 0 ? ' site-top' : '';
+  return `<a href="${url}" target="_blank" rel="noopener" class="site${rank}" title="افتح ${s}">
+    <span class="site-icon">${icon}</span>${s}${i===0?'<span class="site-badge">الأفضل</span>':''}
+  </a>`;
+}).join('');
   const searchText = `${u.title} ${u.use} ${u.sites.join(' ')} ${u.good} ${u.bad} ${u.tip}`.toLowerCase();
 
   const card = document.createElement('div');
@@ -656,8 +747,36 @@ function toggle(btn){
 
 function doCopy(btn,txt){
   navigator.clipboard.writeText(txt).then(()=>{
+    const orig = btn.textContent;
     btn.textContent='✅ تم النسخ!';btn.classList.add('ok');
-    setTimeout(()=>{btn.textContent='📋 نسخ البرومبت';btn.classList.remove('ok');},2000);
+    setTimeout(()=>{btn.textContent=orig;btn.classList.remove('ok');},2000);
+  });
+}
+
+function copyAndOpen(btn,txt,siteName){
+  const urls = {
+    'ChatGPT':'https://chatgpt.com',
+    'Gemini':'https://gemini.google.com',
+    'Claude':'https://claude.ai',
+    'Microsoft Copilot':'https://copilot.microsoft.com',
+    'Canva':'https://www.canva.com',
+    'Gamma':'https://gamma.app',
+    'MagicSchool':'https://www.magicschool.ai',
+    'Diffit':'https://diffit.me',
+    'Brisk Teaching':'https://www.briskteaching.com',
+    'Curipod':'https://curipod.com',
+    'Quizizz':'https://quizizz.com',
+    'Wordwall':'https://wordwall.net',
+  };
+  navigator.clipboard.writeText(txt).then(()=>{
+    btn.textContent='✅ تم النسخ! جاري الفتح...';
+    btn.classList.add('ok');
+    const url = urls[siteName] || 'https://chatgpt.com';
+    setTimeout(()=>{ window.open(url,'_blank'); },600);
+    setTimeout(()=>{
+      btn.textContent='🚀 نسخ وافتح '+siteName;
+      btn.classList.remove('ok');
+    },2500);
   });
 }
 
