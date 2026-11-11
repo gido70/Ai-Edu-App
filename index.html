@@ -297,6 +297,8 @@ body{font-family:'Amiri','Tajawal',sans-serif;background:var(--bg);color:var(--n
 }
 .copy-btn:hover{background:var(--blue)}
 .copy-btn.ok{background:var(--green)}
+.copy-bad{background:#e53935;}
+.copy-bad:hover{background:#b71c1c;}
 
 /* ── EMPTY ── */
 .empty{text-align:center;padding:60px 20px;display:none}
@@ -640,6 +642,7 @@ data.forEach(u => {
       <button class="copy-btn" onclick="doCopy(this,\`${u.good.replace(/`/g,'\\`')}\`)">📋 نسخ البرومبت</button>
       <div class="lbl lbl-bad" style="margin-top:10px">🚫 البرومبت العكسي</div>
       <div class="pbox pbox-bad">${u.bad}</div>
+      <button class="copy-btn copy-bad" onclick="doCopy(this,\`${u.bad.replace(/\`/g,'\\\`')}\`)">📋 نسخ البرومبت العكسي</button>
       <div class="lbl lbl-tip" style="margin-top:10px">💡 نصيحة</div>
       <div class="pbox pbox-tip">${u.tip}</div>
     </div>`;
