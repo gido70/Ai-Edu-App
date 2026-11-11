@@ -198,6 +198,74 @@ body{font-family:'Amiri','Tajawal',sans-serif;background:var(--bg);color:var(--n
   font-size:.76rem;font-weight:700;color:var(--blue);
 }
 
+
+/* ── SEARCH SUGGESTIONS ── */
+.suggestions {
+  position:absolute;
+  top:calc(100% + 6px);
+  right:0; left:0;
+  background:white;
+  border:2px solid var(--sky);
+  border-radius:16px;
+  box-shadow:0 8px 32px rgba(10,30,74,0.15);
+  z-index:999;
+  overflow:hidden;
+  display:none;
+  max-height:280px;
+  overflow-y:auto;
+}
+.suggestions.show { display:block; }
+.sugg-item {
+  padding:11px 16px;
+  cursor:pointer;
+  font-size:.88rem;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-bottom:1px solid #f0f5ff;
+  transition:background .15s;
+  direction:rtl;
+}
+.sugg-item:last-child { border-bottom:none; }
+.sugg-item:hover, .sugg-item.active { background:#f0f7ff; }
+.sugg-item .sugg-icon { font-size:1rem; flex-shrink:0; }
+.sugg-item .sugg-text { flex:1; }
+.sugg-item .sugg-cat {
+  font-size:.72rem;
+  background:var(--bg);
+  border-radius:50px;
+  padding:2px 8px;
+  color:var(--muted);
+  flex-shrink:0;
+}
+.sugg-highlight { color:var(--sky); font-weight:700; }
+
+/* Search stats bar */
+.search-stats {
+  display:none;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  background:#e8f4ff;
+  border-radius:50px;
+  font-size:.8rem;
+  color:var(--blue);
+  font-weight:700;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+.search-stats.show { display:flex; }
+.search-clear {
+  margin-right:auto;
+  background:none;
+  border:none;
+  color:var(--red);
+  cursor:pointer;
+  font-size:.8rem;
+  font-weight:700;
+  font-family:'Amiri','Tajawal',sans-serif;
+}
+
 /* ── EXPAND ── */
 .expand-btn{
   width:100%;background:none;
@@ -352,7 +420,8 @@ footer strong{color:var(--gold)}
   <div class="toolbar-inner">
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="ابحث عن استخدام أو موقع أو كلمة...">
+      <input type="text" id="searchInput" placeholder="ابحث عن استخدام أو موقع أو كلمة..." autocomplete="off">
+      <div class="suggestions" id="suggestions"></div>
     </div>
     <div class="filters" id="desktopFilters">
       <button class="fbtn active" data-f="all">الكل</button>
@@ -368,6 +437,10 @@ footer strong{color:var(--gold)}
 
 <main class="main">
   <div class="sec-title">📖 استكشف الاستخدامات الـ 100</div>
+  <div class="search-stats" id="searchStats">
+    <span id="statsText"></span>
+    <button class="search-clear" onclick="clearSearch()">✕ مسح البحث</button>
+  </div>
   <div class="grid" id="grid"></div>
   <div class="empty" id="empty">
     <h3>🔍 لا توجد نتائج</h3>
@@ -585,18 +658,219 @@ function doCopy(btn,txt){
   });
 }
 
-function filter(){
-  const q = document.getElementById('searchInput').value.trim().toLowerCase();
-  let n=0;
-  document.querySelectorAll('.card').forEach(c=>{
-    const ms = !q || c.dataset.search.includes(q);
-    const mf = activeF==='all' || c.dataset.tags.includes(activeF);
-    c.classList.toggle('hidden', !(ms&&mf));
-    if(ms&&mf) n++;
+
+// ═══════════════════════════════════════════
+//  SMART SEARCH ENGINE v2
+// ═══════════════════════════════════════════
+
+// قاموس المرادفات العربية
+const synonyms = {
+  'امتحان':['اختبار','تقييم','تقويم','exit ticket'],
+  'اختبار':['امتحان','تقييم','تقويم','ورقة عمل'],
+  'تقييم':['اختبار','امتحان','تقويم','قياس','rubric'],
+  'تقويم':['تقييم','اختبار','امتحان'],
+  'درجة':['علامة','تقييم','نتيجة'],
+  'علامة':['درجة','نتيجة','تقييم'],
+  'حصة':['درس','خطة','تخطيط'],
+  'درس':['حصة','وحدة','خطة درس'],
+  'خطة':['تخطيط','درس','حصة'],
+  'وحدة':['درس','فصل','موضوع'],
+  'منهج':['محتوى','مقرر','مناهج'],
+  'مقرر':['منهج','محتوى','كتاب'],
+  'طالب':['تلميذ','طلاب','تلاميذ'],
+  'تلميذ':['طالب','طلاب','تلاميذ'],
+  'ضعيف':['متعثر','بطيء','صعوبة'],
+  'متعثر':['ضعيف','صعوبة','دعم'],
+  'متميز':['متفوق','ممتاز','موهوب'],
+  'نشاط':['تمرين','مهمة','لعبة'],
+  'تمرين':['نشاط','واجب','تدريب'],
+  'لعبة':['نشاط تفاعلي','مسابقة','تفاعلي'],
+  'مشروع':['مهمة','بحث','pbl'],
+  'واجب':['تكليف','تمرين','منزلي'],
+  'قراءة':['فهم قرائي','استيعاب','نص'],
+  'كتابة':['تعبير','إنشاء','مقال'],
+  'شرح':['تفسير','توضيح','تبسيط'],
+  'تبسيط':['شرح','تيسير','تفريد'],
+  'ملخص':['خلاصة','مراجعة','تلخيص'],
+  'مراجعة':['مذاكرة','تلخيص','تحضير'],
+  'مذاكرة':['مراجعة','دراسة','تحضير'],
+  'تفاعل':['مشاركة','نشاط','حوار'],
+  'نقاش':['حوار','تفاعل','مناقشة'],
+  'جماعي':['تعاوني','مجموعات','فريق'],
+  'تعاون':['جماعي','فريق','مجموعة'],
+  'ai':['ذكاء اصطناعي','chatgpt','gemini','claude'],
+  'chatgpt':['ذكاء اصطناعي','ai','جي بي تي'],
+  'جي بي تي':['chatgpt','ai','ذكاء اصطناعي'],
+  'برومبت':['prompt','أمر','طلب'],
+  'prompt':['برومبت','أمر','طلب'],
+  'رقمي':['إلكتروني','تقني','online'],
+  'ولي أمر':['أهل','أسرة','والد'],
+  'أهل':['ولي أمر','أسرة','والد'],
+  'تقرير':['تقارير','سجل','ملاحظة'],
+  'ملاحظة':['تقرير','رصد','تقييم'],
+};
+
+// الاقتراحات السريعة عند الفتح
+const quickSugg = [
+  {icon:'📋', text:'تخطيط الدروس', cat:'تخطيط'},
+  {icon:'✅', text:'إعداد الاختبارات', cat:'تقييم'},
+  {icon:'🎯', text:'أنشطة تفاعلية', cat:'تفاعل'},
+  {icon:'📚', text:'تبسيط المحتوى', cat:'محتوى'},
+  {icon:'💬', text:'التواصل مع الأهل', cat:'إدارة'},
+  {icon:'🔄', text:'خطة علاجية', cat:'تخطيط'},
+  {icon:'📝', text:'ورقة عمل', cat:'تقييم'},
+  {icon:'🧠', text:'تفكير ناقد', cat:'تفاعل'},
+  {icon:'⭐', text:'طلاب متميزون', cat:'تخطيط'},
+  {icon:'🆘', text:'دعم الضعفاء', cat:'تخطيط'},
+  {icon:'🎮', text:'ألعاب تعليمية', cat:'تفاعل'},
+  {icon:'📊', text:'مراجعة قبل الامتحان', cat:'محتوى'},
+];
+
+function expandQuery(q) {
+  const terms = new Set([q]);
+  const words = q.split(/\s+/);
+  words.forEach(w => {
+    if (synonyms[w]) synonyms[w].forEach(s => terms.add(s));
   });
-  document.getElementById('countLbl').textContent = n+' استخدام';
-  document.getElementById('empty').classList.toggle('show', n===0);
+  Object.keys(synonyms).forEach(key => {
+    if (key.includes(q) || synonyms[key].some(s => s.includes(q))) {
+      terms.add(key);
+      synonyms[key].forEach(s => terms.add(s));
+    }
+  });
+  return [...terms];
 }
+
+function filter() {
+  const raw = document.getElementById('searchInput').value.trim().toLowerCase();
+  const stats = document.getElementById('searchStats');
+  const statsText = document.getElementById('statsText');
+  let n = 0;
+
+  if (!raw) {
+    document.querySelectorAll('.card').forEach(c => {
+      const mf = activeF === 'all' || c.dataset.tags.includes(activeF);
+      c.classList.toggle('hidden', !mf);
+      if (mf) n++;
+    });
+    stats.classList.remove('show');
+    document.getElementById('countLbl').textContent = n + ' استخدام';
+    document.getElementById('empty').classList.toggle('show', n === 0);
+    return;
+  }
+
+  const terms = expandQuery(raw);
+  const matched = [];
+
+  document.querySelectorAll('.card').forEach(c => {
+    const txt = c.dataset.search;
+    const mf = activeF === 'all' || c.dataset.tags.includes(activeF);
+    let score = 0;
+    terms.forEach(term => {
+      if (txt.includes(term)) score += (term === raw ? 3 : 1);
+    });
+    const match = score > 0 && mf;
+    c.classList.toggle('hidden', !match);
+    if (match) matched.push({card: c, score});
+    if (match) n++;
+  });
+
+  // Sort by score
+  const grid = document.getElementById('grid');
+  matched.sort((a,b) => b.score - a.score).forEach(({card}) => grid.appendChild(card));
+
+  document.getElementById('countLbl').textContent = n + ' استخدام';
+  document.getElementById('empty').classList.toggle('show', n === 0);
+  statsText.textContent = terms.length > 1
+    ? 'بحثنا عن "' + raw + '" ومرادفاتها — وجدنا ' + n + ' استخدام'
+    : 'نتائج "' + raw + '" — ' + n + ' استخدام';
+  stats.classList.toggle('show', raw.length > 0);
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('suggestions').classList.remove('show');
+  document.getElementById('searchStats').classList.remove('show');
+  filter();
+}
+
+// ── SUGGESTIONS ──
+let suggIdx = -1;
+
+function showSugg(val) {
+  const box = document.getElementById('suggestions');
+  suggIdx = -1;
+  if (!val) {
+    box.innerHTML = quickSugg.map(s =>
+      '<div class="sugg-item" onclick="applySugg(\'' + s.text + '\')">' +
+      '<span class="sugg-icon">' + s.icon + '</span>' +
+      '<span class="sugg-text">' + s.text + '</span>' +
+      '<span class="sugg-cat">' + s.cat + '</span></div>'
+    ).join('');
+    box.classList.add('show');
+    return;
+  }
+  const q = val.toLowerCase();
+  const results = [];
+  document.querySelectorAll('.card:not(.hidden)').forEach(c => {
+    const title = c.querySelector('.card-title').textContent;
+    if (title.toLowerCase().includes(q) && results.length < 7) {
+      const tag = c.dataset.tags.split(',')[0];
+      const ico = {تخطيط:'📋',تقييم:'✅',محتوى:'📚',تفاعل:'🎯',إدارة:'⚙️'}[tag]||'📌';
+      results.push({icon:ico, text:title, cat:tag});
+    }
+  });
+  if (!results.length) {
+    box.innerHTML = '<div class="sugg-item" style="color:var(--muted)">' +
+      '<span class="sugg-icon">🔍</span>' +
+      '<span class="sugg-text">سيبحث في المحتوى الكامل تلقائياً</span></div>';
+  } else {
+    box.innerHTML = results.map(r =>
+      '<div class="sugg-item" onclick="applySugg(\'' + r.text.replace(/'/g,"\\'") + '\')">' +
+      '<span class="sugg-icon">' + r.icon + '</span>' +
+      '<span class="sugg-text">' + r.text + '</span>' +
+      '<span class="sugg-cat">' + r.cat + '</span></div>'
+    ).join('');
+  }
+  box.classList.add('show');
+}
+
+function applySugg(text) {
+  document.getElementById('searchInput').value = text;
+  document.getElementById('suggestions').classList.remove('show');
+  filter();
+}
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  filter();
+  showSugg(e.target.value.trim());
+});
+
+document.getElementById('searchInput').addEventListener('focus', e => {
+  showSugg(e.target.value.trim());
+});
+
+document.getElementById('searchInput').addEventListener('keydown', e => {
+  const items = document.querySelectorAll('.sugg-item');
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    suggIdx = Math.min(suggIdx+1, items.length-1);
+    items.forEach((it,i)=>it.classList.toggle('active',i===suggIdx));
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    suggIdx = Math.max(suggIdx-1,-1);
+    items.forEach((it,i)=>it.classList.toggle('active',i===suggIdx));
+  } else if (e.key==='Enter' && suggIdx>=0) {
+    e.preventDefault(); items[suggIdx].click();
+  } else if (e.key==='Escape') {
+    document.getElementById('suggestions').classList.remove('show');
+  }
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap'))
+    document.getElementById('suggestions').classList.remove('show');
+});
 
 // Desktop filter buttons
 document.querySelectorAll('.fbtn').forEach(b=>{
@@ -619,8 +893,6 @@ function setF(btn){
   filter();
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-document.getElementById('searchInput').addEventListener('input', filter);
 
 // Scroll top button
 window.addEventListener('scroll',()=>{
